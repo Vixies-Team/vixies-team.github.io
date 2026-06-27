@@ -1,0 +1,704 @@
+/* ==========================================================================
+   VIXIES GROUP — STYLESHEET UTAMA
+   Vanilla CSS3 murni. Tanpa pra-prosesor, tanpa framework.
+   Struktur berkas:
+   1. Variabel Akar (:root)
+   2. Reset & Tipografi Dasar
+   3. Utilitas Aksesibilitas
+   4. Layout Umum
+   5. Header & Navigasi
+   6. Hero / Bento Pengantar
+   7. Sistem Bento Grid (Proyek & Tim)
+   8. Kartu Proyek
+   9. Kartu Tim & Avatar
+   10. Lencana (Badge) & Eyebrow
+   11. Tombol CTA
+   12. Seksi CTA & Footer
+   13. Animasi Mikro
+   14. Media Queries (Responsif)
+   ========================================================================== */
+
+/* ---------- 1. VARIABEL AKAR ---------- */
+:root {
+  /* Navy Blue — fondasi korporat, kepercayaan, stabilitas (Vixies Team) */
+  --color-navy: #0A2342;
+  --color-navy-deep: #061730;
+  --color-navy-shadow: #040084;
+
+  /* Orange Fox — energi, kreativitas, intensitas tinggi (Vixies Studio) */
+  --color-orange: #F86302;
+  --color-orange-accent: #FF8200;
+
+  /* Netral hangat — kenyamanan baca, kontras WCAG pada teks panjang */
+  --color-offwhite: #F6F2EA;
+  --color-white: #FFFFFF;
+
+  /* Teks */
+  --color-text-on-light: var(--color-navy);
+  --color-text-on-dark: var(--color-offwhite);
+
+  /* Radius & Bayangan */
+  --radius-md: 14px;
+  --radius-lg: 22px;
+  --shadow-card: 0 8px 22px rgba(4, 0, 132, 0.14);
+  --shadow-card-hover: 0 18px 38px rgba(4, 0, 132, 0.26);
+  --shadow-glow-orange: 0 10px 30px rgba(248, 99, 2, 0.35);
+
+  /* Transisi */
+  --transition-fast: 0.22s ease;
+  --transition-medium: 0.4s cubic-bezier(0.22, 0.8, 0.32, 1);
+
+  /* Tata letak */
+  --header-height: 76px;
+  --max-width: 1240px;
+  --gutter: clamp(1.25rem, 4vw, 3rem);
+  --bento-gap: 1.25rem;
+}
+
+/* ---------- 2. RESET & TIPOGRAFI DASAR ---------- */
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+}
+
+html {
+  scroll-behavior: smooth;
+  scroll-padding-top: var(--header-height);
+}
+
+body {
+  margin: 0;
+  font-family: -apple-system, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
+  color: var(--color-text-on-light);
+  background-color: var(--color-offwhite);
+  line-height: 1.6;
+  -webkit-font-smoothing: antialiased;
+}
+
+img {
+  max-width: 100%;
+  display: block;
+}
+
+h1, h2, h3 {
+  margin: 0 0 0.5em;
+  line-height: 1.2;
+  letter-spacing: -0.01em;
+  font-weight: 800;
+}
+
+h2 {
+  font-size: clamp(1.6rem, 3vw, 2.25rem);
+}
+
+h3 {
+  font-size: clamp(1.1rem, 2vw, 1.35rem);
+}
+
+p {
+  margin: 0 0 1em;
+}
+
+a {
+  color: inherit;
+  text-decoration: none;
+}
+
+ul {
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
+
+button {
+  font: inherit;
+  cursor: pointer;
+}
+
+/* ---------- 3. UTILITAS AKSESIBILITAS ---------- */
+.visually-hidden {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  overflow: hidden;
+  clip: rect(0 0 0 0);
+  white-space: nowrap;
+}
+
+.skip-link {
+  position: absolute;
+  top: -3rem;
+  left: 1rem;
+  z-index: 200;
+  background: var(--color-orange-accent);
+  color: var(--color-navy);
+  padding: 0.6rem 1rem;
+  border-radius: 0 0 var(--radius-md) var(--radius-md);
+  font-weight: 700;
+  transition: top var(--transition-fast);
+}
+
+.skip-link:focus {
+  top: 0;
+}
+
+:focus-visible {
+  outline: 3px solid var(--color-orange-accent);
+  outline-offset: 3px;
+  border-radius: 4px;
+}
+
+/* ---------- 4. LAYOUT UMUM ---------- */
+.section-inner {
+  max-width: var(--max-width);
+  margin: 0 auto;
+  padding: clamp(3rem, 7vw, 5.5rem) var(--gutter);
+}
+
+.eyebrow {
+  display: inline-block;
+  font-size: 0.78rem;
+  font-weight: 700;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  margin-bottom: 0.6rem;
+  color: var(--color-navy);
+  opacity: 0.7;
+}
+
+.eyebrow--studio { color: var(--color-orange); opacity: 1; }
+.eyebrow--team { color: var(--color-navy); opacity: 1; }
+
+.section-lede {
+  max-width: 56ch;
+  opacity: 0.85;
+  font-size: 1.05rem;
+}
+
+/* ---------- 5. HEADER & NAVIGASI ---------- */
+.site-header {
+  position: sticky;
+  top: 0;
+  z-index: 100;
+  height: var(--header-height);
+  background: var(--color-navy);
+  box-shadow: 0 2px 18px rgba(4, 0, 132, 0.25);
+}
+
+.header-inner {
+  max-width: var(--max-width);
+  height: 100%;
+  margin: 0 auto;
+  padding: 0 var(--gutter);
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.brand {
+  font-weight: 800;
+  font-size: 1.15rem;
+  letter-spacing: 0.04em;
+  color: var(--color-offwhite);
+}
+
+.brand-accent {
+  color: var(--color-orange-accent);
+}
+
+.nav-menu {
+  display: flex;
+  align-items: center;
+  gap: 2rem;
+}
+
+.nav-menu a {
+  font-weight: 600;
+  font-size: 0.95rem;
+  color: var(--color-text-on-dark);
+  padding: 0.4rem 0.1rem;
+  border-bottom: 2px solid transparent;
+  transition: color var(--transition-fast), border-color var(--transition-fast);
+}
+
+.nav-menu a:hover,
+.nav-menu a:focus-visible {
+  color: var(--color-orange-accent);
+  border-color: var(--color-orange-accent);
+}
+
+.nav-cta {
+  background: var(--color-orange);
+  color: var(--color-navy) !important;
+  padding: 0.5rem 1.1rem !important;
+  border-radius: 999px;
+  border-bottom: none !important;
+  transition: background-color var(--transition-fast), transform var(--transition-fast);
+}
+
+.nav-cta:hover {
+  background: var(--color-orange-accent);
+  transform: translateY(-1px);
+}
+
+.nav-toggle {
+  display: none;
+  flex-direction: column;
+  justify-content: center;
+  gap: 5px;
+  width: 40px;
+  height: 40px;
+  background: transparent;
+  border: none;
+  padding: 0;
+}
+
+.nav-toggle-bar {
+  width: 100%;
+  height: 2px;
+  background: var(--color-offwhite);
+  border-radius: 2px;
+  transition: transform var(--transition-fast), opacity var(--transition-fast);
+}
+
+.nav-toggle.is-active .nav-toggle-bar:nth-child(1) {
+  transform: translateY(7px) rotate(45deg);
+}
+.nav-toggle.is-active .nav-toggle-bar:nth-child(2) {
+  opacity: 0;
+}
+.nav-toggle.is-active .nav-toggle-bar:nth-child(3) {
+  transform: translateY(-7px) rotate(-45deg);
+}
+
+/* ---------- 6. HERO / BENTO PENGANTAR ---------- */
+.hero {
+  position: relative;
+  background: linear-gradient(160deg, var(--color-navy) 0%, var(--color-navy-deep) 100%);
+  padding-bottom: 4rem;
+  overflow: hidden;
+}
+
+.hero-grid {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  grid-auto-rows: 180px;
+  gap: var(--bento-gap);
+}
+
+.hero-tile {
+  background: var(--color-white);
+  border-radius: var(--radius-lg);
+  padding: clamp(1.5rem, 3vw, 2.5rem);
+  box-shadow: var(--shadow-card);
+  transition: transform var(--transition-medium), box-shadow var(--transition-medium);
+}
+
+.hero-tile:hover {
+  transform: translateY(-4px);
+  box-shadow: var(--shadow-card-hover);
+}
+
+/* Tile 2x2: kuadran utama berisi data dinamis companyInfo */
+.hero-tile--main {
+  grid-column: span 2;
+  grid-row: span 2;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  background: var(--color-offwhite);
+}
+
+.hero-tile--main h2 {
+  font-size: clamp(1.8rem, 3.4vw, 2.6rem);
+}
+
+.hero-description {
+  font-size: 1.05rem;
+  opacity: 0.85;
+}
+
+/* Tile lebar 2x1: Studio & Team bersusun di sisi kanan */
+.hero-tile--studio,
+.hero-tile--team {
+  grid-column: span 2;
+  grid-row: span 1;
+}
+
+.hero-tile--studio {
+  border-left: 5px solid var(--color-orange);
+}
+
+.hero-tile--team {
+  border-left: 5px solid var(--color-navy);
+}
+
+.hero-tile--studio p:last-child,
+.hero-tile--team p:last-child {
+  margin-bottom: 0;
+  opacity: 0.8;
+  font-size: 0.95rem;
+}
+
+/* Elemen tanda tangan visual: kurva penghubung sebagai metafora "menjembatani" dua divisi */
+.seam-divider {
+  position: absolute;
+  bottom: -2px;
+  left: 0;
+  width: 100%;
+  height: 80px;
+}
+
+/* ---------- 7. SISTEM BENTO GRID (Proyek & Tim) ---------- */
+.bento-grid {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  grid-auto-rows: 230px;
+  gap: var(--bento-gap);
+  margin-top: 2.5rem;
+}
+
+.bento-item {
+  border-radius: var(--radius-lg);
+  opacity: 0;
+}
+
+/* Pola ukuran asimetris — disuntik via JavaScript (getBentoClass) */
+.span-big    { grid-column: span 2; grid-row: span 2; }   /* 2x2 — ubin dominan */
+.span-tall   { grid-column: span 1; grid-row: span 2; }   /* 1x2 — baris panjang */
+.span-wide   { grid-column: span 2; grid-row: span 1; }   /* 2x1 — bentang lebar */
+.span-normal { grid-column: span 1; grid-row: span 1; }   /* 1x1 — ubin padat */
+
+.data-state {
+  grid-column: 1 / -1;
+  text-align: center;
+  padding: 3rem 1rem;
+  opacity: 0.7;
+  font-style: italic;
+}
+
+.data-state--error {
+  color: var(--color-orange);
+  font-weight: 600;
+  font-style: normal;
+  opacity: 1;
+}
+
+/* ---------- 8. KARTU PROYEK ---------- */
+.project-card {
+  position: relative;
+  background: var(--color-white);
+  box-shadow: var(--shadow-card);
+  overflow: hidden;
+  display: flex;
+  flex-direction: column;
+  transition: transform var(--transition-medium), box-shadow var(--transition-medium);
+}
+
+.project-card:hover,
+.project-card:focus-within {
+  transform: scale(1.025) translateY(-4px);
+  box-shadow: var(--shadow-card-hover);
+}
+
+.card-image-wrap {
+  position: relative;
+  flex: 1 1 auto;
+  overflow: hidden;
+  min-height: 0;
+}
+
+.card-image-wrap img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  transition: transform var(--transition-medium);
+}
+
+.project-card:hover .card-image-wrap img {
+  transform: scale(1.08);
+}
+
+.card-body {
+  padding: 1.1rem 1.3rem 1.3rem;
+}
+
+.card-body h3 {
+  margin-bottom: 0.3rem;
+}
+
+.card-body p {
+  margin: 0;
+  font-size: 0.92rem;
+  opacity: 0.8;
+}
+
+/* ---------- 9. KARTU TIM & AVATAR ---------- */
+.team-card {
+  background: var(--color-white);
+  box-shadow: var(--shadow-card);
+  padding: 1.4rem;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: flex-start;
+  gap: 0.35rem;
+  border-top: 4px solid transparent;
+  transition: transform var(--transition-medium), box-shadow var(--transition-medium), border-color var(--transition-fast);
+}
+
+.team-card:hover,
+.team-card:focus-within {
+  transform: translateY(-5px) scale(1.015);
+  box-shadow: var(--shadow-card-hover);
+}
+
+.team-card--studio { border-top-color: var(--color-orange); }
+.team-card--team   { border-top-color: var(--color-navy); }
+
+.team-card h3 {
+  margin: 0.4rem 0 0;
+}
+
+.team-card .role {
+  margin: 0;
+  font-size: 0.88rem;
+  opacity: 0.75;
+}
+
+.avatar-placeholder {
+  width: 46px;
+  height: 46px;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-weight: 800;
+  font-size: 1.1rem;
+  color: var(--color-white);
+}
+
+.avatar-studio { background: var(--color-orange); }
+.avatar-team   { background: var(--color-navy); }
+
+/* ---------- 10. LENCANA (BADGE) ---------- */
+.badge {
+  display: inline-block;
+  font-size: 0.72rem;
+  font-weight: 700;
+  letter-spacing: 0.03em;
+  text-transform: uppercase;
+  padding: 0.32rem 0.7rem;
+  border-radius: 999px;
+}
+
+/* Lencana di atas gambar proyek */
+.card-image-wrap .badge {
+  position: absolute;
+  top: 0.8rem;
+  left: 0.8rem;
+}
+
+.badge-studio {
+  background: var(--color-orange);
+  color: var(--color-navy); /* kontras AA tinggi di atas oranye */
+}
+
+.badge-team {
+  background: var(--color-navy);
+  color: var(--color-offwhite);
+}
+
+/* ---------- 11. TOMBOL CTA ---------- */
+.btn-cta {
+  display: inline-block;
+  background: var(--color-orange);
+  color: var(--color-navy);
+  font-weight: 700;
+  font-size: 0.95rem;
+  padding: 0.75rem 1.5rem;
+  border-radius: 999px;
+  margin-top: 0.5rem;
+  box-shadow: var(--shadow-glow-orange);
+  transition: background-color var(--transition-fast), transform var(--transition-fast), box-shadow var(--transition-fast);
+}
+
+.btn-cta:hover,
+.btn-cta:focus-visible {
+  background: var(--color-orange-accent);
+  transform: translateY(-2px);
+  box-shadow: 0 14px 36px rgba(248, 99, 2, 0.45);
+}
+
+.btn-cta--lg {
+  font-size: 1.05rem;
+  padding: 0.95rem 2.1rem;
+}
+
+/* ---------- 12. SEKSI CTA & FOOTER ---------- */
+.cta-section {
+  background: var(--color-navy);
+  color: var(--color-text-on-dark);
+}
+
+.cta-inner {
+  text-align: center;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.cta-section h2 {
+  color: var(--color-white);
+}
+
+.cta-section p {
+  max-width: 52ch;
+  opacity: 0.85;
+}
+
+.site-footer {
+  background: var(--color-navy-deep);
+  color: var(--color-text-on-dark);
+}
+
+.footer-inner {
+  padding: 2rem var(--gutter);
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-between;
+  gap: 0.5rem;
+  font-size: 0.85rem;
+  opacity: 0.75;
+}
+
+.footer-note {
+  font-weight: 600;
+}
+
+/* ---------- 13. ANIMASI MIKRO ---------- */
+@keyframes fadeInUp {
+  from {
+    opacity: 0;
+    transform: translateY(18px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+.fade-in {
+  animation: fadeInUp 0.6s ease forwards;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  html {
+    scroll-behavior: auto;
+  }
+  *, *::before, *::after {
+    animation-duration: 0.001ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.001ms !important;
+  }
+  .bento-item {
+    opacity: 1;
+  }
+}
+
+/* ---------- 14. MEDIA QUERIES (RESPONSIF) ---------- */
+
+/* Tablet: lipat matriks 4 kolom menjadi 2 kolom, tetap mempertahankan sebagian asimetri */
+@media (max-width: 1024px) {
+  .hero-grid {
+    grid-template-columns: repeat(2, 1fr);
+    grid-auto-rows: 200px;
+  }
+
+  .hero-tile--main {
+    grid-column: span 2;
+    grid-row: span 2;
+  }
+
+  .hero-tile--studio,
+  .hero-tile--team {
+    grid-column: span 2;
+    grid-row: span 1;
+  }
+
+  .bento-grid {
+    grid-template-columns: repeat(2, 1fr);
+    grid-auto-rows: 220px;
+  }
+
+  .span-big  { grid-column: span 2; grid-row: span 2; }
+  .span-wide { grid-column: span 2; grid-row: span 1; }
+  .span-tall { grid-column: span 1; grid-row: span 2; }
+}
+
+/* Mobile: hamburger menu + tata letak linier vertikal (stack tunggal) */
+@media (max-width: 768px) {
+  .nav-toggle {
+    display: flex;
+  }
+
+  .main-nav {
+    position: absolute;
+    top: var(--header-height);
+    left: 0;
+    width: 100%;
+    background: var(--color-navy);
+    box-shadow: 0 12px 24px rgba(4, 0, 132, 0.25);
+  }
+
+  .nav-menu {
+    flex-direction: column;
+    align-items: stretch;
+    gap: 0;
+    max-height: 0;
+    overflow: hidden;
+    transition: max-height var(--transition-medium);
+  }
+
+  .nav-menu.is-open {
+    max-height: 320px;
+  }
+
+  .nav-menu li {
+    padding: 0 var(--gutter);
+  }
+
+  .nav-menu a {
+    display: block;
+    padding: 0.9rem 0;
+    border-bottom: 1px solid rgba(246, 242, 234, 0.1);
+  }
+
+  .nav-cta {
+    display: inline-block;
+    margin: 0.8rem 0;
+  }
+
+  /* Bento Grid dilipat menjadi kolom tunggal linier, tinggi otomatis menyesuaikan konten */
+  .hero-grid,
+  .bento-grid {
+    grid-template-columns: 1fr;
+    grid-auto-rows: auto;
+  }
+
+  .hero-tile--main,
+  .hero-tile--studio,
+  .hero-tile--team,
+  .span-big,
+  .span-tall,
+  .span-wide,
+  .span-normal {
+    grid-column: span 1;
+    grid-row: span 1;
+  }
+
+  .card-image-wrap {
+    min-height: 200px;
+  }
+}

@@ -1,8 +1,146 @@
-<html>
-  <head>
-    <title>Home |Vixies Team</title>
-  </head>
-  <body>
-    <h1>Vixies Team Homepage</h1>
-  </body>
+<!DOCTYPE html>
+<html lang="id">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Vixies Group — Studio Kreatif & Tata Kelola Korporat</title>
+  <meta name="description" content="Vixies Group menjembatani Vixies Studio (pengembangan game & pengalaman interaktif) dan Vixies Team (tata kelola korporat, rekayasa, dan infrastruktur) dalam satu entitas digital." />
+  <meta name="theme-color" content="#0A2342" />
+
+  <!-- Open Graph dasar untuk pratinjau berbagi tautan -->
+  <meta property="og:title" content="Vixies Group" />
+  <meta property="og:description" content="Menjembatani batas antara struktur korporat solid dan desain permainan tingkat revolusioner." />
+  <meta property="og:type" content="website" />
+
+  <link rel="stylesheet" href="./styles.css" />
+</head>
+<body>
+
+  <!-- Skip link untuk navigasi keyboard/pembaca layar -->
+  <a class="skip-link" href="#main-content">Lompat ke konten utama</a>
+
+  <header class="site-header">
+    <div class="header-inner">
+      <a class="brand" href="#beranda" aria-label="Vixies Group — Beranda">
+        VIXIES<span class="brand-accent">GROUP</span>
+      </a>
+
+      <button
+        id="nav-toggle"
+        class="nav-toggle"
+        type="button"
+        aria-label="Buka menu navigasi"
+        aria-expanded="false"
+        aria-controls="nav-menu"
+      >
+        <span class="nav-toggle-bar"></span>
+        <span class="nav-toggle-bar"></span>
+        <span class="nav-toggle-bar"></span>
+      </button>
+
+      <nav class="main-nav" aria-label="Navigasi utama">
+        <ul id="nav-menu" class="nav-menu">
+          <li><a href="#beranda">Beranda</a></li>
+          <li><a href="#proyek">Proyek</a></li>
+          <li><a href="#tim">Tim</a></li>
+          <li><a class="nav-cta" href="#kontak">Kontak</a></li>
+        </ul>
+      </nav>
+    </div>
+  </header>
+
+  <main id="main-content">
+
+    <!-- ============ HERO / BENTO PENGANTAR ============ -->
+    <section id="beranda" class="hero" aria-labelledby="hero-heading">
+      <div class="section-inner">
+        <h1 id="hero-heading" class="visually-hidden">Vixies Group</h1>
+
+        <div class="hero-grid">
+
+          <!-- Tile besar (2x2): diisi dinamis dari companyInfo via fetch -->
+          <article class="bento-item hero-tile hero-tile--main">
+            <p class="eyebrow">Entitas Digital</p>
+            <h2 id="company-name">Vixies Group</h2>
+            <p id="company-description" class="hero-description">Memuat deskripsi perusahaan&hellip;</p>
+            <a class="btn-cta" href="#proyek">Lihat Proyek Kami</a>
+          </article>
+
+          <!-- Tile lebar (2x1): identitas Vixies Studio -->
+          <article class="bento-item hero-tile hero-tile--studio">
+            <p class="eyebrow eyebrow--studio">Lengan Kreatif</p>
+            <h3>Vixies Studio</h3>
+            <p>Desain, pengembangan, dan publikasi game serta pengalaman interaktif. Energi, kecepatan, kreativitas.</p>
+          </article>
+
+          <!-- Tile lebar (2x1): identitas Vixies Team -->
+          <article class="bento-item hero-tile hero-tile--team">
+            <p class="eyebrow eyebrow--team">Fondasi Korporat</p>
+            <h3>Vixies Team</h3>
+            <p>Tata kelola, pemasaran, rekayasa infrastruktur, dan manajemen internal. Struktur, stabilitas, profesionalisme.</p>
+          </article>
+
+        </div>
+      </div>
+
+      <!-- Pembatas kurva sebagai elemen tanda tangan visual: melambangkan "menjembatani" dua divisi -->
+      <svg class="seam-divider" viewBox="0 0 1440 80" preserveAspectRatio="none" aria-hidden="true" focusable="false">
+        <path d="M0,40 C360,90 1080,-10 1440,40 L1440,80 L0,80 Z" fill="var(--color-offwhite)"></path>
+      </svg>
+    </section>
+
+    <!-- ============ PROYEK — VIXIES STUDIO ============ -->
+    <section id="proyek" class="projects-section" aria-labelledby="projects-heading">
+      <div class="section-inner">
+        <p class="eyebrow eyebrow--studio">Portofolio</p>
+        <h2 id="projects-heading">Proyek Vixies Studio</h2>
+        <p class="section-lede">Setiap judul dirancang, dibangun, dan dipoles langsung oleh tim kreatif internal kami.</p>
+
+        <!-- Kontainer Bento Grid: diisi secara dinamis oleh script.js melalui Fetch API -->
+        <div id="project-grid" class="bento-grid" aria-live="polite">
+          <p class="data-state">Memuat proyek dari basis data lokal&hellip;</p>
+        </div>
+      </div>
+    </section>
+
+    <!-- ============ TIM — VIXIES GROUP ============ -->
+    <section id="tim" class="team-section" aria-labelledby="team-heading">
+      <div class="section-inner">
+        <p class="eyebrow eyebrow--team">Struktur Internal</p>
+        <h2 id="team-heading">Tim Kami</h2>
+        <p class="section-lede">Gabungan talenta dari Vixies Studio dan Vixies Team yang menjalankan organisasi ini setiap hari.</p>
+
+        <!-- Kontainer Bento Grid: diisi secara dinamis oleh script.js melalui Fetch API -->
+        <div id="team-grid" class="bento-grid" aria-live="polite">
+          <p class="data-state">Memuat data tim&hellip;</p>
+        </div>
+      </div>
+    </section>
+
+    <!-- ============ CTA / KONTAK ============ -->
+    <section id="kontak" class="cta-section">
+      <div class="section-inner cta-inner">
+        <h2>Tertarik berkolaborasi dengan kami?</h2>
+        <p>Baik Anda mencari mitra pengembangan game atau dukungan infrastruktur korporat, Vixies Group siap menjembatani kebutuhan Anda.</p>
+        <a class="btn-cta btn-cta--lg" href="mailto:halo@vixiesgroup.example">Hubungi Vixies Group</a>
+      </div>
+    </section>
+
+  </main>
+
+  <footer class="site-footer">
+    <div class="section-inner footer-inner">
+      <p>&copy; <span id="current-year">2026</span> Vixies Group. Seluruh hak cipta dilindungi.</p>
+      <p class="footer-note">Vixies Studio &middot; Vixies Team</p>
+    </div>
+  </footer>
+
+  <noscript>
+    <p style="padding:1rem;text-align:center;background:#F6F2EA;color:#0A2342;">
+      Situs ini memerlukan JavaScript untuk menampilkan daftar proyek dan tim secara dinamis. Mohon aktifkan JavaScript pada peramban Anda.
+    </p>
+  </noscript>
+
+  <script src="./script.js" defer></script>
+</body>
 </html>
