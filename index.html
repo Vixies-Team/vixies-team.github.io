@@ -5,14 +5,13 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Vixies Group — Creative Game Studio</title>
 
-    <!-- Font Awesome 6 for social icons -->
+    <!-- Font Awesome 6 -->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
-    <!-- Google Fonts: Inter + Playfair Display -->
+    <!-- Google Fonts: Inter (primary) + Playfair Display (only for brand accent) -->
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&family=Playfair+Display:wght@600;700;800&display=swap" rel="stylesheet">
 
     <style>
         :root {
-            /* Dark Mode (default) */
             --bg-primary: #0a0f1a;
             --bg-secondary: #0f1729;
             --bg-card: #131d30;
@@ -20,13 +19,13 @@
             --text-primary: #e8ecf2;
             --text-secondary: #b0bdd0;
             --text-muted: #7a8ba3;
-            --nav-bg: rgba(10, 15, 26, 0.85);
+            --nav-bg: rgba(10, 15, 26, 0.75);
             --nav-border: rgba(255, 255, 255, 0.06);
             --shadow-card: 0 4px 24px rgba(0, 0, 0, 0.45);
             --shadow-card-hover: 0 12px 40px rgba(0, 0, 0, 0.6);
             --border-subtle: rgba(255, 255, 255, 0.07);
-            --hero-gradient: radial-gradient(ellipse at 30% 20%, rgba(232, 93, 4, 0.18) 0%, transparent 60%),
-                radial-gradient(ellipse at 70% 60%, rgba(30, 60, 120, 0.3) 0%, transparent 60%),
+            --hero-gradient: radial-gradient(ellipse at 30% 20%, rgba(232, 93, 4, 0.22) 0%, transparent 70%),
+                radial-gradient(ellipse at 70% 60%, rgba(30, 60, 120, 0.35) 0%, transparent 70%),
                 var(--bg-primary);
             --section-alt-bg: #0c1322;
             --toggle-bg: #1e2a3f;
@@ -35,12 +34,9 @@
             --fox-orange-light: #f4791f;
             --fox-orange-glow: rgba(232, 93, 4, 0.5);
             --navy-accent: #1a3a6b;
-            --navy-deep: #0d1b2a;
-            --text-on-orange: #fff;
             --badge-bg: rgba(232, 93, 4, 0.15);
             --badge-text: #f4791f;
             --divider: rgba(255, 255, 255, 0.06);
-            --input-bg: #131d30;
             --scrollbar-thumb: #1e3350;
             --scrollbar-track: #0a0f1a;
         }
@@ -53,13 +49,13 @@
             --text-primary: #1a1f2e;
             --text-secondary: #4a5568;
             --text-muted: #7a8ba3;
-            --nav-bg: rgba(255, 255, 255, 0.88);
+            --nav-bg: rgba(255, 255, 255, 0.82);
             --nav-border: rgba(0, 0, 0, 0.08);
             --shadow-card: 0 4px 20px rgba(0, 0, 0, 0.07);
             --shadow-card-hover: 0 14px 36px rgba(0, 0, 0, 0.13);
             --border-subtle: rgba(0, 0, 0, 0.08);
-            --hero-gradient: radial-gradient(ellipse at 30% 20%, rgba(232, 93, 4, 0.09) 0%, transparent 60%),
-                radial-gradient(ellipse at 70% 60%, rgba(26, 58, 107, 0.12) 0%, transparent 60%),
+            --hero-gradient: radial-gradient(ellipse at 30% 20%, rgba(232, 93, 4, 0.12) 0%, transparent 70%),
+                radial-gradient(ellipse at 70% 60%, rgba(26, 58, 107, 0.15) 0%, transparent 70%),
                 #f0f2f6;
             --section-alt-bg: #edf0f5;
             --toggle-bg: #dde3ed;
@@ -67,1170 +63,384 @@
             --badge-bg: rgba(232, 93, 4, 0.1);
             --badge-text: #c44d03;
             --divider: rgba(0, 0, 0, 0.07);
-            --input-bg: #f0f2f6;
             --scrollbar-thumb: #c4cdd8;
             --scrollbar-track: #f0f2f6;
         }
 
-        * {
-            margin: 0;
-            padding: 0;
-            box-sizing: border-box;
-        }
-
-        html {
-            scroll-behavior: smooth;
-        }
-
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        html { scroll-behavior: smooth; }
         body {
             font-family: 'Inter', system-ui, -apple-system, sans-serif;
             background-color: var(--bg-primary);
             color: var(--text-primary);
             line-height: 1.6;
-            transition: background-color 0.4s ease, color 0.4s ease;
+            transition: background-color 0.4s, color 0.4s;
             overflow-x: hidden;
             -webkit-font-smoothing: antialiased;
-            -moz-osx-font-smoothing: grayscale;
         }
 
-        /* Scrollbar */
-        ::-webkit-scrollbar {
-            width: 7px;
-        }
-        ::-webkit-scrollbar-track {
-            background: var(--scrollbar-track);
-        }
-        ::-webkit-scrollbar-thumb {
-            background: var(--scrollbar-thumb);
-            border-radius: 10px;
-        }
+        ::-webkit-scrollbar { width: 7px; }
+        ::-webkit-scrollbar-track { background: var(--scrollbar-track); }
+        ::-webkit-scrollbar-thumb { background: var(--scrollbar-thumb); border-radius: 10px; }
 
-        /* ============ NAVIGATION ============ */
+        /* NAVIGATION */
         .navbar {
-            position: fixed;
-            top: 0;
-            left: 0;
-            right: 0;
-            z-index: 1000;
-            backdrop-filter: blur(18px);
-            -webkit-backdrop-filter: blur(18px);
-            background: var(--nav-bg);
-            border-bottom: 1px solid var(--nav-border);
-            padding: 0 2rem;
-            height: 68px;
-            display: flex;
-            align-items: center;
-            justify-content: space-between;
-            transition: all 0.35s ease;
+            position: fixed; top: 0; left: 0; right: 0; z-index: 1000;
+            backdrop-filter: blur(18px); -webkit-backdrop-filter: blur(18px);
+            background: var(--nav-bg); border-bottom: 1px solid var(--nav-border);
+            padding: 0 2rem; height: 68px; display: flex; align-items: center; justify-content: space-between;
+            transition: all 0.35s;
         }
-        .navbar.scrolled {
-            box-shadow: 0 2px 20px rgba(0, 0, 0, 0.25);
-        }
-        [data-theme="light"] .navbar.scrolled {
-            box-shadow: 0 2px 18px rgba(0, 0, 0, 0.08);
-        }
+        .navbar.scrolled { box-shadow: 0 2px 20px rgba(0,0,0,0.25); }
+        [data-theme="light"] .navbar.scrolled { box-shadow: 0 2px 18px rgba(0,0,0,0.08); }
 
-        .nav-logo {
-            display: flex;
-            align-items: center;
-            gap: 10px;
-            font-weight: 800;
-            font-size: 1.45rem;
-            letter-spacing: -0.4px;
-            color: var(--text-primary);
-            text-decoration: none;
-            cursor: pointer;
-            transition: opacity 0.25s;
-        }
-        .nav-logo:hover {
-            opacity: 0.82;
-        }
+        .nav-left { display: flex; align-items: center; flex: 1; }
+        .nav-logo { display:flex; align-items:center; gap:10px; font-weight:800; font-size:1.45rem; letter-spacing:-0.4px; color:var(--text-primary); text-decoration:none; }
+        .nav-logo:hover { opacity:0.82; }
         .nav-logo .logo-icon {
-            width: 38px;
-            height: 38px;
-            border-radius: 10px;
-            background: linear-gradient(135deg, #e85d04 0%, #f4791f 60%, #ff9a4d 100%);
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            font-size: 1.25rem;
-            color: #fff;
-            font-weight: 900;
-            box-shadow: 0 4px 16px var(--fox-orange-glow);
-            flex-shrink: 0;
+            width:38px; height:38px; border-radius:10px;
+            background:linear-gradient(135deg,#e85d04 0%,#f4791f 60%,#ff9a4d 100%);
+            display:flex; align-items:center; justify-content:center;
+            box-shadow:0 4px 16px var(--fox-orange-glow); flex-shrink:0;
+            overflow: hidden;
         }
-        .nav-links {
-            display: flex;
-            align-items: center;
-            gap: 2.2rem;
-            list-style: none;
-        }
-        .nav-links a {
-            text-decoration: none;
-            color: var(--text-secondary);
-            font-weight: 500;
-            font-size: 0.95rem;
-            letter-spacing: 0.1px;
-            transition: color 0.25s;
-            position: relative;
-            padding: 4px 0;
-        }
-        .nav-links a::after {
-            content: '';
-            position: absolute;
-            bottom: -2px;
-            left: 0;
-            width: 0%;
-            height: 2px;
-            background: var(--fox-orange);
-            border-radius: 2px;
-            transition: width 0.3s cubic-bezier(0.25, 0.8, 0.25, 1.2);
-        }
-        .nav-links a:hover {
-            color: var(--text-primary);
-        }
-        .nav-links a:hover::after {
-            width: 100%;
+        .nav-logo .logo-icon svg {
+            width: 24px;
+            height: 24px;
         }
 
-        /* Theme Toggle */
+        .nav-center { display: flex; justify-content: center; flex: 2; }
+        .nav-links { display:flex; align-items:center; gap:2.2rem; list-style:none; }
+        .nav-links a { text-decoration:none; color:var(--text-secondary); font-weight:500; font-size:0.95rem; transition:color 0.25s; position:relative; padding:4px 0; }
+        .nav-links a::after { content:''; position:absolute; bottom:-2px; left:0; width:0%; height:2px; background:var(--fox-orange); border-radius:2px; transition:width 0.3s; }
+        .nav-links a:hover { color:var(--text-primary); }
+        .nav-links a:hover::after { width:100%; }
+
+        .nav-right { display: flex; align-items: center; justify-content: flex-end; flex: 1; gap: 14px; }
         .theme-toggle {
-            background: var(--toggle-bg);
-            border: none;
-            width: 48px;
-            height: 28px;
-            border-radius: 28px;
-            cursor: pointer;
-            position: relative;
-            transition: all 0.35s ease;
-            flex-shrink: 0;
-            box-shadow: inset 0 1px 3px rgba(0, 0, 0, 0.2);
+            background:var(--toggle-bg); border:none; width:48px; height:28px; border-radius:28px; cursor:pointer;
+            position:relative; transition:all 0.35s; box-shadow:inset 0 1px 3px rgba(0,0,0,0.2);
         }
         .theme-toggle .dot {
-            position: absolute;
-            top: 3px;
-            left: 3px;
-            width: 22px;
-            height: 22px;
-            border-radius: 50%;
-            background: var(--toggle-dot);
-            transition: all 0.35s cubic-bezier(0.4, 0, 0.2, 1);
-            box-shadow: 0 2px 6px rgba(0, 0, 0, 0.3);
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            font-size: 11px;
-            color: #fff;
+            position:absolute; top:3px; left:3px; width:22px; height:22px; border-radius:50%;
+            background:var(--toggle-dot); transition:all 0.35s; box-shadow:0 2px 6px rgba(0,0,0,0.3);
+            display:flex; align-items:center; justify-content:center; font-size:11px; color:#fff;
         }
-        [data-theme="light"] .theme-toggle .dot {
-            left: 23px;
-            background: #e85d04;
-        }
-        .theme-toggle .dot i {
-            transition: transform 0.35s ease, opacity 0.25s;
-        }
-        [data-theme="dark"] .theme-toggle .dot .fa-moon {
-            display: inline-block;
-        }
-        [data-theme="dark"] .theme-toggle .dot .fa-sun {
-            display: none;
-        }
-        [data-theme="light"] .theme-toggle .dot .fa-moon {
-            display: none;
-        }
-        [data-theme="light"] .theme-toggle .dot .fa-sun {
-            display: inline-block;
-        }
+        [data-theme="light"] .theme-toggle .dot { left:23px; background:#e85d04; }
+        [data-theme="dark"] .theme-toggle .dot .fa-sun { display:none; }
+        [data-theme="light"] .theme-toggle .dot .fa-moon { display:none; }
+        .mobile-menu-btn { display:none; background:none; border:none; color:var(--text-primary); font-size:1.6rem; cursor:pointer; }
 
-        /* Mobile menu button */
-        .mobile-menu-btn {
-            display: none;
-            background: none;
-            border: none;
-            color: var(--text-primary);
-            font-size: 1.6rem;
-            cursor: pointer;
-            padding: 6px;
-            transition: color 0.25s;
-        }
-        .mobile-menu-btn:hover {
-            color: var(--fox-orange);
-        }
-
-        /* ============ HERO SECTION ============ */
+        /* HERO */
         .hero {
-            height: 100vh;                    /* FULL HEIGHT */
-            padding-top: 68px;                /* offset for fixed navbar */
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            text-align: center;
-            background: var(--hero-gradient);
-            position: relative;
-            overflow: hidden;
-            box-sizing: border-box;
-            padding-left: 2rem;
-            padding-right: 2rem;
-            padding-bottom: 2rem;
+            height: 100vh; padding-top: 68px; display: flex; align-items: center; justify-content: center;
+            text-align: center; background: var(--hero-gradient); position: relative; overflow: hidden;
+            padding-left: 2rem; padding-right: 2rem; padding-bottom: 0;
         }
         .hero::before {
-            content: '';
-            position: absolute;
-            width: 500px;
-            height: 500px;
-            border-radius: 50%;
-            background: radial-gradient(circle, rgba(232, 93, 4, 0.14) 0%, transparent 70%);
-            top: -120px;
-            right: -100px;
-            pointer-events: none;
-            animation: floatGlow 8s ease-in-out infinite;
+            content:''; position:absolute; width:800px; height:800px; border-radius:50%;
+            background:radial-gradient(circle, rgba(232,93,4,0.18) 0%, transparent 70%);
+            top:-200px; right:-150px; pointer-events:none; animation:floatGlow 8s infinite;
         }
         .hero::after {
-            content: '';
-            position: absolute;
-            width: 400px;
-            height: 400px;
-            border-radius: 50%;
-            background: radial-gradient(circle, rgba(26, 58, 107, 0.18) 0%, transparent 70%);
-            bottom: -80px;
-            left: -80px;
-            pointer-events: none;
-            animation: floatGlow 10s ease-in-out infinite reverse;
+            content:''; position:absolute; width:700px; height:700px; border-radius:50%;
+            background:radial-gradient(circle, rgba(26,58,107,0.25) 0%, transparent 70%);
+            bottom:-180px; left:-120px; pointer-events:none; animation:floatGlow 10s infinite reverse;
         }
         @keyframes floatGlow {
-            0%,
-            100% {
-                transform: translate(0, 0);
-            }
-            33% {
-                transform: translate(30px, -25px);
-            }
-            66% {
-                transform: translate(-20px, 20px);
-            }
+            0%,100% { transform:translate(0,0); } 33% { transform:translate(40px,-30px); } 66% { transform:translate(-30px,25px); }
         }
-        .hero-content {
-            position: relative;
-            z-index: 1;
-            max-width: 780px;
-        }
-        .hero-badge {
-            display: inline-block;
-            background: var(--badge-bg);
-            color: var(--badge-text);
-            font-weight: 600;
-            font-size: 0.85rem;
-            padding: 7px 18px;
-            border-radius: 50px;
-            letter-spacing: 0.4px;
-            margin-bottom: 1.6rem;
-            border: 1px solid rgba(232, 93, 4, 0.2);
-            animation: fadeInUp 0.8s ease-out;
-        }
+        .hero-content { position:relative; z-index:2; max-width:780px; }
         .hero-title {
-            font-family: 'Playfair Display', 'Inter', serif;
-            font-size: clamp(3rem, 7vw, 5.2rem);
-            font-weight: 800;
-            letter-spacing: -1.5px;
-            line-height: 1.08;
-            margin-bottom: 1.2rem;
-            color: var(--text-primary);
-            animation: fadeInUp 0.8s ease-out 0.1s both;
-        }
-        .hero-title .accent {
-            color: var(--fox-orange);
-            position: relative;
-        }
-        .hero-subtitle {
-            font-size: clamp(1.05rem, 2.2vw, 1.25rem);
-            color: var(--text-secondary);
-            max-width: 550px;
-            margin: 0 auto 2.4rem;
-            font-weight: 400;
-            letter-spacing: 0.2px;
-            animation: fadeInUp 0.8s ease-out 0.2s both;
-        }
-        .hero-buttons {
-            display: flex;
-            gap: 1rem;
-            flex-wrap: wrap;
-            justify-content: center;
-            animation: fadeInUp 0.8s ease-out 0.3s both;
-        }
-        @keyframes fadeInUp {
-            from {
-                opacity: 0;
-                transform: translateY(28px);
-            }
-            to {
-                opacity: 1;
-                transform: translateY(0);
-            }
-        }
-        .btn {
-            display: inline-flex;
-            align-items: center;
-            gap: 8px;
-            padding: 13px 28px;
-            border-radius: 50px;
-            font-weight: 600;
-            font-size: 0.95rem;
-            text-decoration: none;
-            cursor: pointer;
-            letter-spacing: 0.2px;
-            transition: all 0.3s cubic-bezier(0.25, 0.8, 0.25, 1.2);
-            border: none;
             font-family: 'Inter', sans-serif;
-        }
-        .btn-primary {
-            background: linear-gradient(135deg, #e85d04 0%, #f4791f 100%);
-            color: #fff;
-            box-shadow: 0 8px 28px rgba(232, 93, 4, 0.35);
-        }
-        .btn-primary:hover {
-            transform: translateY(-3px);
-            box-shadow: 0 14px 38px rgba(232, 93, 4, 0.5);
-        }
-        .btn-outline {
-            background: transparent;
-            color: var(--text-primary);
-            border: 2px solid var(--border-subtle);
-        }
-        .btn-outline:hover {
-            border-color: var(--fox-orange);
-            color: var(--fox-orange);
-            transform: translateY(-3px);
-            box-shadow: 0 8px 24px rgba(232, 93, 4, 0.15);
-        }
-
-        /* ============ SECTIONS ============ */
-        section {
-            padding: 5rem 2rem;
-            margin: 0 auto;
-        }
-        .section-label {
-            display: inline-block;
-            font-weight: 700;
-            font-size: 0.8rem;
-            letter-spacing: 2.5px;
-            text-transform: uppercase;
-            color: var(--fox-orange);
-            margin-bottom: 0.6rem;
-        }
-        .section-title {
-            font-family: 'Playfair Display', 'Inter', serif;
-            font-size: clamp(2.2rem, 4.5vw, 3rem);
-            font-weight: 700;
-            letter-spacing: -0.6px;
-            margin-bottom: 1rem;
-            color: var(--text-primary);
-        }
-        .section-desc {
-            color: var(--text-secondary);
-            max-width: 600px;
-            font-size: 1.05rem;
-            line-height: 1.7;
-            margin-bottom: 3rem;
-        }
-        .section-alt {
-            background: var(--section-alt-bg);
-            max-width: 100%;
-            padding: 5rem 2rem;
-        }
-        .section-alt .section-inner {
-            margin: 0 auto;
-        }
-
-        /* ============ ABOUT SECTION ============ */
-        .about-grid {
-            display: grid;
-            grid-template-columns: 1fr 1fr;
-            gap: 3.5rem;
-            align-items: center;
-        }
-        .about-visual {
-            position: relative;
-            border-radius: 20px;
-            overflow: hidden;
-            aspect-ratio: 4/3;
-            background: var(--bg-card);
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            border: 1px solid var(--border-subtle);
-            box-shadow: var(--shadow-card);
-        }
-        .about-visual .placeholder-art {
-            font-size: 6rem;
-            opacity: 0.25;
-            color: var(--fox-orange);
-            animation: pulse 3s ease-in-out infinite;
-        }
-        @keyframes pulse {
-            0%,
-            100% {
-                transform: scale(1);
-                opacity: 0.25;
-            }
-            50% {
-                transform: scale(1.1);
-                opacity: 0.4;
-            }
-        }
-        .about-text h3 {
-            font-size: 1.6rem;
-            font-weight: 700;
-            margin-bottom: 1rem;
-            color: var(--text-primary);
-            letter-spacing: -0.3px;
-        }
-        .about-text p {
-            color: var(--text-secondary);
-            line-height: 1.8;
+            font-size: clamp(3rem, 7vw, 5rem);
+            font-weight: 800;
+            letter-spacing: -2px;
+            line-height: 1.1;
             margin-bottom: 1.2rem;
-            font-size: 0.98rem;
-        }
-        .about-stats {
-            display: flex;
-            gap: 2rem;
-            flex-wrap: wrap;
-            margin-top: 2rem;
-        }
-        .stat-item {
-            text-align: center;
-        }
-        .stat-number {
-            font-family: 'Playfair Display', serif;
-            font-size: 2.6rem;
-            font-weight: 800;
-            color: var(--fox-orange);
-            letter-spacing: -1px;
-        }
-        .stat-label {
-            font-size: 0.85rem;
-            color: var(--text-muted);
-            font-weight: 500;
-            letter-spacing: 0.3px;
-        }
-
-        /* ============ TEAM SECTION ============ */
-        .team-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fill, minmax(240px, 1fr));
-            gap: 1.6rem;
-        }
-        .team-card {
-            background: var(--bg-card);
-            border-radius: 18px;
-            padding: 2rem 1.5rem 1.8rem;
-            text-align: center;
-            border: 1px solid var(--border-subtle);
-            box-shadow: var(--shadow-card);
-            transition: all 0.35s cubic-bezier(0.25, 0.8, 0.25, 1.2);
-            cursor: default;
-            position: relative;
-            overflow: hidden;
-        }
-        .team-card::before {
-            content: '';
-            position: absolute;
-            top: 0;
-            left: 0;
-            right: 0;
-            height: 4px;
-            background: linear-gradient(90deg, #e85d04, #f4791f, #ff9a4d);
-            transform: scaleX(0);
-            transform-origin: left;
-            transition: transform 0.4s ease;
-            border-radius: 0 0 4px 4px;
-        }
-        .team-card:hover::before {
-            transform: scaleX(1);
-        }
-        .team-card:hover {
-            transform: translateY(-8px);
-            box-shadow: var(--shadow-card-hover);
-            border-color: rgba(232, 93, 4, 0.25);
-            background: var(--bg-card-hover);
-        }
-        .team-avatar {
-            width: 80px;
-            height: 80px;
-            border-radius: 50%;
-            margin: 0 auto 1.2rem;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            font-size: 2rem;
-            font-weight: 800;
-            letter-spacing: -0.5px;
-            color: #fff;
-            background: linear-gradient(135deg, #1a3a6b 0%, #264e8a 40%, #e85d04 100%);
-            box-shadow: 0 6px 22px rgba(26, 58, 107, 0.35);
-            transition: all 0.35s ease;
-            position: relative;
-        }
-        .team-card:hover .team-avatar {
-            box-shadow: 0 10px 30px rgba(232, 93, 4, 0.45);
-            transform: scale(1.06);
-        }
-        .team-card h4 {
-            font-size: 1.15rem;
-            font-weight: 700;
             color: var(--text-primary);
-            letter-spacing: -0.2px;
-            margin-bottom: 0.3rem;
         }
-        .team-card .role {
-            font-size: 0.85rem;
-            color: var(--fox-orange);
-            font-weight: 500;
-            letter-spacing: 0.2px;
-        }
-        .team-card .role-tag {
-            display: inline-block;
-            margin-top: 0.7rem;
-            background: var(--badge-bg);
-            color: var(--badge-text);
-            font-size: 0.75rem;
-            padding: 4px 12px;
-            border-radius: 50px;
-            font-weight: 500;
-            letter-spacing: 0.3px;
-        }
+        .hero-title .accent { color: var(--fox-orange); }
+        .hero-subtitle { font-size: 1.1rem; color: var(--text-secondary); max-width: 550px; margin: 0 auto 2.5rem; }
+        .hero-buttons { display:flex; gap:1rem; flex-wrap:wrap; justify-content:center; }
 
-        /* ============ PROJECTS SECTION ============ */
-        .projects-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fill, minmax(320px, 1fr));
-            gap: 1.8rem;
-        }
-        .project-card {
-            background: var(--bg-card);
-            border-radius: 18px;
-            overflow: hidden;
-            border: 1px solid var(--border-subtle);
-            box-shadow: var(--shadow-card);
-            transition: all 0.35s cubic-bezier(0.25, 0.8, 0.25, 1.2);
-            cursor: pointer;
-            display: flex;
-            flex-direction: column;
-        }
-        .project-card:hover {
-            transform: translateY(-8px);
-            box-shadow: var(--shadow-card-hover);
-            border-color: rgba(232, 93, 4, 0.3);
-            background: var(--bg-card-hover);
-        }
-        .project-thumb {
-            height: 200px;
-            background: linear-gradient(135deg, #0d1b2a 0%, #1a3a6b 50%, #0f1729 100%);
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            position: relative;
-            overflow: hidden;
-        }
-        .project-thumb .thumb-icon {
-            font-size: 4rem;
-            opacity: 0.3;
-            color: #fff;
-            transition: all 0.4s ease;
-        }
-        .project-card:hover .project-thumb .thumb-icon {
-            opacity: 0.55;
-            transform: scale(1.15);
-        }
-        .project-thumb::after {
-            content: '';
+        /* Fade overlay untuk transisi mulus */
+        .hero-fade {
             position: absolute;
             bottom: 0;
             left: 0;
             right: 0;
-            height: 50%;
-            background: linear-gradient(to top, var(--bg-card) 0%, transparent 100%);
+            height: 120px;
+            background: linear-gradient(to bottom, transparent, var(--bg-primary));
+            z-index: 1;
             pointer-events: none;
-            transition: background 0.4s ease;
         }
-        .project-card:hover .project-thumb::after {
-            background: linear-gradient(to top, var(--bg-card-hover) 0%, transparent 100%);
+
+        .btn {
+            display:inline-flex; align-items:center; gap:8px; padding:13px 28px; border-radius:50px;
+            font-weight:600; font-size:0.95rem; text-decoration:none; cursor:pointer; transition:all 0.3s; border:none;
         }
-        .project-info {
-            padding: 1.4rem 1.5rem 1.6rem;
-            flex: 1;
-            display: flex;
-            flex-direction: column;
+        .btn-primary { background:linear-gradient(135deg,#e85d04 0%,#f4791f 100%); color:#fff; box-shadow:0 8px 28px rgba(232,93,4,0.35); }
+        .btn-primary:hover { transform:translateY(-3px); box-shadow:0 14px 38px rgba(232,93,4,0.5); }
+        .btn-outline { background:transparent; color:var(--text-primary); border:2px solid var(--border-subtle); }
+        .btn-outline:hover { border-color:var(--fox-orange); color:var(--fox-orange); transform:translateY(-3px); }
+
+        /* SECTIONS */
+        .section-full { width: 100%; padding: 5rem 2rem; background-color: var(--bg-primary); }
+        .section-full.section-alt-bg { background-color: var(--section-alt-bg); }
+        .section-inner { max-width: 1200px; margin: 0 auto; }
+
+        .section-label {
+            display: inline-block; font-weight: 700; font-size: 0.8rem; letter-spacing: 2.5px;
+            text-transform: uppercase; color: var(--fox-orange); margin-bottom: 0.6rem;
         }
-        .project-info h4 {
-            font-size: 1.2rem;
-            font-weight: 700;
+        .section-title {
+            font-family: 'Inter', sans-serif;
+            font-size: clamp(2rem, 5vw, 2.8rem);
+            font-weight: 800;
+            letter-spacing: -1px;
+            margin-bottom: 1.5rem;
             color: var(--text-primary);
-            letter-spacing: -0.2px;
-            margin-bottom: 0.4rem;
-        }
-        .project-info .genre {
-            font-size: 0.8rem;
-            color: var(--fox-orange);
-            font-weight: 600;
-            letter-spacing: 0.4px;
-            text-transform: uppercase;
-            margin-bottom: 0.7rem;
-        }
-        .project-info p {
-            font-size: 0.9rem;
-            color: var(--text-secondary);
-            line-height: 1.6;
-            flex: 1;
-        }
-        .project-tags {
-            display: flex;
-            flex-wrap: wrap;
-            gap: 0.5rem;
-            margin-top: 1rem;
-        }
-        .project-tags span {
-            font-size: 0.72rem;
-            padding: 4px 10px;
-            border-radius: 50px;
-            background: var(--badge-bg);
-            color: var(--badge-text);
-            font-weight: 500;
-            letter-spacing: 0.2px;
         }
 
-        /* ============ FOOTER ============ */
-        .footer {
-            background: var(--bg-secondary);
-            border-top: 1px solid var(--divider);
-            padding: 2.5rem 2rem;
-            text-align: center;
+        /* ABOUT */
+        .about-text p { margin-bottom:1.2rem; color:var(--text-secondary); font-size: 1.05rem; }
+        blockquote { border-left:4px solid var(--fox-orange); padding-left:1.5rem; margin:2rem 0; color:var(--text-primary); font-style:italic; font-size:1.15rem; }
+
+        /* BIDANG */
+        .field-grid { display:grid; grid-template-columns:repeat(auto-fit, minmax(220px,1fr)); gap:1.5rem; margin-top:2rem; }
+        .field-card { background:var(--bg-card); border-radius:14px; padding:1.8rem; text-align:center; border:1px solid var(--border-subtle); }
+        .field-card i { font-size:2rem; color:var(--fox-orange); margin-bottom:0.8rem; }
+        .field-card h4 { font-weight:700; margin-bottom:0.4rem; }
+        .field-card p { font-size:0.9rem; color:var(--text-secondary); }
+
+        /* TEAM */
+        .team-grid { display:grid; grid-template-columns:repeat(auto-fill, minmax(240px,1fr)); gap:1.6rem; }
+        .team-card { background:var(--bg-card); border-radius:18px; padding:2rem 1.5rem; text-align:center; border:1px solid var(--border-subtle); box-shadow:var(--shadow-card); transition:all 0.35s; position:relative; overflow:hidden; }
+        .team-card::before { content:''; position:absolute; top:0; left:0; right:0; height:4px; background:linear-gradient(90deg,#e85d04,#f4791f,#ff9a4d); transform:scaleX(0); transform-origin:left; transition:transform 0.4s; }
+        .team-card:hover::before { transform:scaleX(1); }
+        .team-card:hover { transform:translateY(-8px); box-shadow:var(--shadow-card-hover); border-color:rgba(232,93,4,0.25); background:var(--bg-card-hover); }
+        .team-avatar {
+            width:80px; height:80px; border-radius:50%; margin:0 auto 1.2rem; display:flex; align-items:center; justify-content:center;
+            font-size:2rem; font-weight:800; color:#fff; background:linear-gradient(135deg,#1a3a6b 0%,#264e8a 40%,#e85d04 100%);
+            box-shadow:0 6px 22px rgba(26,58,107,0.35); transition:all 0.35s; position:relative; overflow:hidden;
         }
-        .footer-inner {
-            margin: 0 auto;
-            display: flex;
-            flex-direction: column;
-            align-items: center;
-            gap: 1.6rem;
+        .team-avatar img {
+            width:100%; height:100%; object-fit:cover; border-radius:50%; position:absolute; top:0; left:0;
         }
-        .social-icons {
-            display: flex;
-            gap: 1.4rem;
-            flex-wrap: wrap;
-            justify-content: center;
-        }
+        .team-avatar:has(img) { background:transparent !important; font-size:0; }
+        .team-card h4 { font-size:1.15rem; font-weight:700; margin-bottom:0.3rem; }
+        .team-card .role { font-size:0.85rem; color:var(--fox-orange); font-weight:500; }
+        .role-tag { display:inline-block; margin-top:0.7rem; background:var(--badge-bg); color:var(--badge-text); font-size:0.75rem; padding:4px 12px; border-radius:50px; }
+
+        /* PROJECTS */
+        .projects-grid { display:grid; grid-template-columns:repeat(auto-fill, minmax(300px,1fr)); gap:1.8rem; }
+        .project-card { background:var(--bg-card); border-radius:18px; overflow:hidden; border:1px solid var(--border-subtle); box-shadow:var(--shadow-card); transition:all 0.35s; display:flex; flex-direction:column; }
+        .project-card:hover { transform:translateY(-8px); box-shadow:var(--shadow-card-hover); border-color:rgba(232,93,4,0.3); }
+        .project-thumb { height:180px; background:linear-gradient(135deg,#0d1b2a 0%,#1a3a6b 100%); display:flex; align-items:center; justify-content:center; }
+        .project-thumb i { font-size:3rem; color:#fff; opacity:0.4; }
+        .project-info { padding:1.4rem; flex:1; }
+        .project-info h4 { font-weight:700; margin-bottom:0.3rem; }
+        .project-info .status { font-size:0.8rem; color:var(--fox-orange); }
+
+        /* FOOTER */
+        .footer { background:var(--bg-secondary); border-top:1px solid var(--divider); padding:3rem 2rem 2rem; }
+        .footer-grid { display:grid; grid-template-columns:1fr 1fr; gap:2rem; max-width:1200px; margin:0 auto 2rem; align-items:center; }
+        .footer-brand h3 { font-size:1.6rem; font-weight:800; color:var(--fox-orange); margin-bottom:0.5rem; }
+        .footer-brand p { color:var(--text-secondary); font-size:0.95rem; }
+        .footer-social { text-align:right; }
+        .footer-social .social-icons { display:flex; gap:1rem; justify-content:flex-end; flex-wrap:wrap; }
         .social-icons a {
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            width: 48px;
-            height: 48px;
-            border-radius: 50%;
-            background: var(--bg-card);
-            color: var(--text-secondary);
-            font-size: 1.25rem;
-            text-decoration: none;
-            transition: all 0.3s cubic-bezier(0.25, 0.8, 0.25, 1.2);
-            border: 1px solid var(--border-subtle);
+            display:flex; align-items:center; justify-content:center; width:44px; height:44px; border-radius:50%;
+            background:var(--bg-card); color:var(--text-secondary); font-size:1.2rem; text-decoration:none;
+            transition:all 0.3s; border:1px solid var(--border-subtle);
         }
-        .social-icons a:hover {
-            background: var(--fox-orange);
-            color: #fff;
-            border-color: var(--fox-orange);
-            transform: translateY(-5px);
-            box-shadow: 0 10px 28px rgba(232, 93, 4, 0.4);
-        }
-        .footer-text {
-            color: var(--text-muted);
-            font-size: 0.9rem;
-            letter-spacing: 0.2px;
-        }
-        .footer-text strong {
-            color: var(--fox-orange);
-            font-weight: 700;
-        }
+        .social-icons a:hover { background:var(--fox-orange); color:#fff; transform:translateY(-4px); box-shadow:0 8px 22px rgba(232,93,4,0.4); }
+        .footer-bottom { text-align:center; padding-top:1.5rem; border-top:1px solid var(--divider); color:var(--text-muted); font-size:0.9rem; }
 
-        /* ============ RESPONSIVE ============ */
-        @media (max-width: 900px) {
-            .about-grid {
-                grid-template-columns: 1fr;
-                gap: 2rem;
-            }
-            .about-visual {
-                aspect-ratio: 16/9;
-                max-height: 300px;
-            }
-            .projects-grid {
-                grid-template-columns: 1fr;
-                max-width: 500px;
-                margin: 0 auto;
-            }
-            .team-grid {
-                grid-template-columns: repeat(auto-fill, minmax(180px, 1fr));
-                gap: 1rem;
-            }
-            .hero {
-                padding-left: 1.2rem;
-                padding-right: 1.2rem;
-            }
-        }
         @media (max-width: 768px) {
-            .nav-links {
-                display: none;
-                position: absolute;
-                top: 68px;
-                left: 0;
-                right: 0;
-                background: var(--nav-bg);
-                flex-direction: column;
-                gap: 0;
-                padding: 1rem 0;
-                border-bottom: 1px solid var(--nav-border);
-                backdrop-filter: blur(18px);
-                -webkit-backdrop-filter: blur(18px);
-            }
-            .nav-links.open {
-                display: flex;
-            }
-            .nav-links a {
-                padding: 0.9rem 2rem;
-                display: block;
-                width: 100%;
-                border-bottom: 1px solid var(--border-subtle);
-            }
-            .nav-links a::after {
-                display: none;
-            }
-            .mobile-menu-btn {
-                display: block;
-            }
-            .hero {
-                padding-top: 68px;
-                padding-bottom: 1.5rem;
-            }
-            section {
-                padding: 3rem 1.2rem;
-            }
-            .section-alt {
-                padding: 3rem 1.2rem;
-            }
-            .team-grid {
-                grid-template-columns: repeat(2, 1fr);
-                gap: 0.8rem;
-            }
-            .team-card {
-                padding: 1.3rem 0.8rem 1.3rem;
-            }
-            .team-avatar {
-                width: 60px;
-                height: 60px;
-                font-size: 1.4rem;
-            }
-            .team-card h4 {
-                font-size: 0.95rem;
-            }
-            .team-card .role {
-                font-size: 0.75rem;
-            }
-        }
-        @media (max-width: 420px) {
-            .team-grid {
-                grid-template-columns: 1fr 1fr;
-                gap: 0.6rem;
-            }
-            .team-card {
-                padding: 1rem 0.6rem 1rem;
-            }
-            .hero-title {
-                font-size: 2.2rem;
-            }
-            .btn {
-                padding: 11px 20px;
-                font-size: 0.85rem;
-            }
+            .nav-center { display: none; }
+            .nav-links { display:none; position:absolute; top:68px; left:0; right:0; background:var(--nav-bg); flex-direction:column; padding:1rem 0; }
+            .nav-links.open { display:flex; }
+            .mobile-menu-btn { display:block; }
+            .nav-right { flex: 0; }
+            .footer-grid { grid-template-columns:1fr; text-align:center; }
+            .footer-social { text-align:center; }
+            .footer-social .social-icons { justify-content:center; }
+            .team-grid { grid-template-columns:1fr 1fr; }
         }
     </style>
 </head>
 <body>
-
-    <!-- ==================== NAVIGATION ==================== -->
     <nav class="navbar" id="navbar">
-        <a href="#" class="nav-logo">
-            <span class="logo-icon">V</span>
-            Vixies Group
-        </a>
-        <ul class="nav-links" id="navLinks">
-            <li><a href="#about" onclick="closeMenu()">About</a></li>
-            <li><a href="#team" onclick="closeMenu()">Team</a></li>
-            <li><a href="#projects" onclick="closeMenu()">Projects</a></li>
-            <li><a href="#contact" onclick="closeMenu()">Contact</a></li>
-        </ul>
-        <div style="display:flex;align-items:center;gap:14px;">
-            <button class="theme-toggle" id="themeToggle" aria-label="Toggle dark/light mode" title="Toggle Dark/Light Mode">
-                <span class="dot">
-                    <i class="fa-solid fa-moon"></i>
-                    <i class="fa-solid fa-sun"></i>
-                </span>
+        <div class="nav-left">
+            <a href="#" class="nav-logo">
+                <span class="logo-icon">V</span>
+                Vixies Group
+            </a>
+        </div>
+        <div class="nav-center">
+            <ul class="nav-links" id="navLinks">
+                <li><a href="#about">Tentang</a></li>
+                <li><a href="#team">Tim</a></li>
+                <li><a href="#projects">Proyek</a></li>
+                <li><a href="#contact">Kontak</a></li>
+            </ul>
+        </div>
+        <div class="nav-right">
+            <button class="theme-toggle" id="themeToggle">
+                <span class="dot"><i class="fa-solid fa-moon"></i><i class="fa-solid fa-sun"></i></span>
             </button>
-            <button class="mobile-menu-btn" id="mobileMenuBtn" aria-label="Menu">
-                <i class="fa-solid fa-bars"></i>
-            </button>
+            <button class="mobile-menu-btn" id="mobileMenuBtn"><i class="fa-solid fa-bars"></i></button>
         </div>
     </nav>
 
-    <!-- ==================== HERO (FULL SCREEN) ==================== -->
     <section class="hero" id="home">
         <div class="hero-content">
-            <span class="hero-badge">🎮 Indie Game Studio</span>
-            <h1 class="hero-title">
-                We Build <span class="accent">Games</span> That Tell Stories
-            </h1>
-            <p class="hero-subtitle">
-                Vixies Group is a passionate team of creators — programmers, artists, and storytellers —
-                crafting immersive gaming experiences from the heart of Indonesia.
-            </p>
+            <h1 class="hero-title">Membangun Karya, <span class="accent">Belajar Bersama.</span></h1>
+            <p class="hero-subtitle">Vixies Group adalah organisasi kreatif dan teknologi independen yang lahir dari semangat mahasiswa Indonesia. Kami mengubah ide menjadi karya nyata melalui kolaborasi lintas disiplin.</p>
             <div class="hero-buttons">
-                <a href="#projects" class="btn btn-primary">
-                    <i class="fa-solid fa-gamepad"></i> Explore Our Games
-                </a>
-                <a href="#team" class="btn btn-outline">
-                    <i class="fa-solid fa-users"></i> Meet the Team
-                </a>
+                <a href="#projects" class="btn btn-primary"><i class="fa-solid fa-gamepad"></i> Lihat Proyek</a>
+                <a href="#team" class="btn btn-outline"><i class="fa-solid fa-users"></i> Kenali Tim</a>
             </div>
         </div>
+        <div class="hero-fade"></div>
     </section>
 
-    <!-- ==================== ABOUT US ==================== -->
-    <section id="about">
-        <span class="section-label">About Us</span>
-        <h2 class="section-title">The Story Behind Vixies</h2>
-        <p class="section-desc">
-            We are a collective of creative minds united by a shared love for storytelling and interactive experiences.
-        </p>
-        <div class="about-grid">
-            <div class="about-visual">
-                <span class="placeholder-art"><i class="fa-solid fa-dragon"></i></span>
-            </div>
-            <div class="about-text">
-                <h3>Forged in Creativity, Driven by Passion</h3>
-                <p>
-                    Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed do eiusmod tempor incididunt ut labore
-                    et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut
-                    aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse
-                    cillum dolore eu fugiat nulla pariatur.
-                </p>
-                <p>
-                    Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id
-                    est laborum. Sed ut perspiciatis unde omnis iste natus error sit voluptatem accusantium doloremque
-                    laudantium, totam rem aperiam, eaque ipsa quae ab illo inventore veritatis.
-                </p>
-                <div class="about-stats">
-                    <div class="stat-item">
-                        <div class="stat-number">8+</div>
-                        <div class="stat-label">Team Members</div>
-                    </div>
-                    <div class="stat-item">
-                        <div class="stat-number">5+</div>
-                        <div class="stat-label">Projects</div>
-                    </div>
-                    <div class="stat-item">
-                        <div class="stat-number">2020</div>
-                        <div class="stat-label">Established</div>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </section>
-
-    <!-- ==================== TEAM ==================== -->
-    <div class="section-alt" id="team">
+    <!-- ABOUT -->
+    <div class="section-full" id="about">
         <div class="section-inner">
-            <span class="section-label">Our Team</span>
-            <h2 class="section-title">The People Behind the Magic</h2>
-            <p class="section-desc">
-                Each member brings a unique talent to the table — from code to canvas, from narrative to design.
-            </p>
-            <div class="team-grid">
-                <!-- Kevin -->
-                <div class="team-card">
-                    <div class="team-avatar">K</div>
-                    <h4>Kevin</h4>
-                    <p class="role">CEO & Programmer</p>
-                    <span class="role-tag">Leadership</span>
-                </div>
-                <!-- Fahri -->
-                <div class="team-card">
-                    <div class="team-avatar">F</div>
-                    <h4>Fahri</h4>
-                    <p class="role">Storywriter</p>
-                    <span class="role-tag">Narrative</span>
-                </div>
-                <!-- Elam -->
-                <div class="team-card">
-                    <div class="team-avatar">E</div>
-                    <h4>Elam</h4>
-                    <p class="role">Project Manager</p>
-                    <span class="role-tag">Management</span>
-                </div>
-                <!-- Ojan -->
-                <div class="team-card">
-                    <div class="team-avatar">O</div>
-                    <h4>Ojan</h4>
-                    <p class="role">Programmer</p>
-                    <span class="role-tag">Engineering</span>
-                </div>
-                <!-- Nizar -->
-                <div class="team-card">
-                    <div class="team-avatar">N</div>
-                    <h4>Nizar</h4>
-                    <p class="role">Storywriter & Game Design</p>
-                    <span class="role-tag">Creative</span>
-                </div>
-                <!-- Rizki -->
-                <div class="team-card">
-                    <div class="team-avatar">R</div>
-                    <h4>Rizki</h4>
-                    <p class="role">2D Artist</p>
-                    <span class="role-tag">Visual</span>
-                </div>
-                <!-- Suryo -->
-                <div class="team-card">
-                    <div class="team-avatar">S</div>
-                    <h4>Suryo</h4>
-                    <p class="role">Storywriter</p>
-                    <span class="role-tag">Narrative</span>
-                </div>
-                <!-- Ezar -->
-                <div class="team-card">
-                    <div class="team-avatar">E</div>
-                    <h4>Ezar</h4>
-                    <p class="role">Editor & Artist</p>
-                    <span class="role-tag">Visual</span>
-                </div>
+            <span class="section-label">Tentang Kami</span>
+            <h2 class="section-title">Dari obrolan santai menjadi karya bersama</h2>
+            <div class="about-text">
+                <p><strong>Vixies Group</strong> berawal dari diskusi ringan antar teman kampus, lalu tumbuh menjadi ekosistem kecil tempat ide-ide gila diubah menjadi karya nyata. Kami adalah perpaduan antara programmer, desainer, penulis, dan gamer yang bersatu untuk menciptakan sesuatu yang berdampak.</p>
+                <p>Visi kami adalah menjembatani dunia akademis dan industri melalui proyek-proyek terbuka yang bisa dipelajari dan dikembangkan bersama siapa saja.</p>
+                <blockquote>💬 "Cara terbaik untuk mempelajari sesuatu adalah dengan mempraktikkannya." — William Glasser</blockquote>
+                <p>Kami memegang teguh prinsip <strong>learning by doing</strong>. Kegagalan adalah batu loncatan, kolaborasi adalah kunci, dan rasa ingin tahu adalah bahan bakar utama.</p>
             </div>
         </div>
     </div>
 
-    <!-- ==================== PROJECTS ==================== -->
-    <section id="projects">
-        <span class="section-label">Our Work</span>
-        <h2 class="section-title">Games & Projects</h2>
-        <p class="section-desc">
-            A showcase of the titles and experiences we have poured our hearts into. More coming soon.
-        </p>
-        <div class="projects-grid">
-            <!-- Project 1 -->
-            <div class="project-card">
-                <div class="project-thumb">
-                    <span class="thumb-icon"><i class="fa-solid fa-skull"></i></span>
+    <!-- BIDANG KERJA -->
+    <div class="section-full section-alt-bg" id="bidang">
+        <div class="section-inner">
+            <span class="section-label">Bidang Kerja</span>
+            <h2 class="section-title">Eksplorasi dan Eksekusi</h2>
+            <div class="field-grid">
+                <div class="field-card"><i class="fa-solid fa-code"></i><h4>Software Development</h4><p>Web, Mobile, & Backend — dari aplikasi sederhana hingga sistem kompleks.</p></div>
+                <div class="field-card"><i class="fa-solid fa-gamepad"></i><h4>Game Creation</h4><p>Game design & development 2D/3D dengan Unity, Godot, dan alat lainnya.</p></div>
+                <div class="field-card"><i class="fa-solid fa-people-arrows"></i><h4>Community & Event</h4><p>Workshop, diskusi, dan game jam internal untuk berbagi ilmu.</p></div>
+                <div class="field-card"><i class="fa-solid fa-paintbrush"></i><h4>Content & Creative</h4><p>Aset visual, dokumentasi, dan konten sosial media yang menarik.</p></div>
+            </div>
+        </div>
+    </div>
+
+    <!-- TEAM -->
+    <div class="section-full" id="team">
+        <div class="section-inner">
+            <span class="section-label">Tim Kami</span>
+            <h2 class="section-title">The People Behind the Magic</h2>
+            <p style="color:var(--text-secondary); max-width:600px;">Setiap anggota membawa bakat unik — dari kode, kanvas, narasi, hingga desain.</p>
+            <br>
+            <div class="team-grid">
+                <div class="team-card"><div class="team-avatar"><img src="https://avatars.githubusercontent.com/u/109958650?v=4" alt="Kevin"></div><h4>Kevin Adhaikal</h4><p class="role">CEO & Programmer</p><span class="role-tag">Leadership</span></div>
+                <div class="team-card"><div class="team-avatar">F</div><h4>Fahri Santoso</h4><p class="role">Storywriter & Game Designer</p><span class="role-tag">Narrative</span></div>
+                <div class="team-card"><div class="team-avatar"><img src="https://avatars.githubusercontent.com/u/245013243?v=4" alt="Erlambang"></div><h4>Erlambang</h4><p class="role">Project Manager</p><span class="role-tag">Management</span></div>
+                <div class="team-card"><div class="team-avatar"><img src="https://avatars.githubusercontent.com/u/218979810?v=4" alt="Fauzan"></div><h4>Fauzan Faturrahman</h4><p class="role">Programmer, Game Designer & 2D Pixel Artist</p><span class="role-tag">Engineering</span></div>
+                <div class="team-card"><div class="team-avatar">N</div><h4>Nizar Qashid</h4><p class="role">Storywriter & Game Design</p><span class="role-tag">Creative</span></div>
+                <div class="team-card"><div class="team-avatar">R</div><h4>Rizki Rasdiwiyanto</h4><p class="role">2D Artist</p><span class="role-tag">Visual</span></div>
+                <div class="team-card"><div class="team-avatar">S</div><h4>Suryo</h4><p class="role">Storywriter</p><span class="role-tag">Narrative</span></div>
+                <div class="team-card"><div class="team-avatar">E</div><h4>Ezar</h4><p class="role">Editor & Artist</p><span class="role-tag">Visual</span></div>
+            </div>
+        </div>
+    </div>
+
+    <!-- PROJECTS -->
+    <div class="section-full section-alt-bg" id="projects">
+        <div class="section-inner">
+            <span class="section-label">Proyek Unggulan</span>
+            <h2 class="section-title">Yang Sedang Kami Garap</h2>
+            <div class="projects-grid">
+                <div class="project-card">
+                    <div class="project-thumb"><i class="fa-solid fa-futbol"></i></div>
+                    <div class="project-info">
+                        <span class="status">🟡 Pengembangan</span>
+                        <h4>click_the_ball</h4>
+                        <p>Game kasual sederhana yang mengasah refleks. Just click the ball!</p>
+                        <a href="https://github.com/Vixies-Team/click_the_ball" target="_blank" style="color:var(--fox-orange);">Lihat di GitHub →</a>
+                    </div>
                 </div>
-                <div class="project-info">
-                    <span class="genre">Action RPG</span>
-                    <h4>Shadow Realm Chronicles</h4>
-                    <p>An epic dark-fantasy RPG with branching storylines and tactical combat. Explore a vast world
-                        filled with ancient mysteries.</p>
-                    <div class="project-tags">
-                        <span>Unity</span><span>C#</span><span>2D</span>
+                <div class="project-card">
+                    <div class="project-thumb"><i class="fa-solid fa-skull"></i></div>
+                    <div class="project-info">
+                        <span class="status">🟡 Pengembangan</span>
+                        <h4>7 Minutes Before Death</h4>
+                        <p>Game petualangan 2D bertema budaya Nusantara dengan atmosfer mencekam.</p>
+                        <a href="https://github.com/Vixies-Team/7-minutes-before-death" target="_blank" style="color:var(--fox-orange);">Lihat di GitHub →</a>
+                    </div>
+                </div>
+                <div class="project-card">
+                    <div class="project-thumb"><i class="fa-solid fa-globe"></i></div>
+                    <div class="project-info">
+                        <span class="status">🔵 Rencana</span>
+                        <h4>Breaking The Fourth Wall</h4>
+                        <p>Landing page organisasi dengan animasi interaktif dan sentuhan sinematik.</p>
+                        <span style="color:var(--text-muted);">Segera hadir</span>
                     </div>
                 </div>
             </div>
-            <!-- Project 2 -->
-            <div class="project-card">
-                <div class="project-thumb">
-                    <span class="thumb-icon"><i class="fa-solid fa-puzzle-piece"></i></span>
-                </div>
-                <div class="project-info">
-                    <span class="genre">Puzzle Adventure</span>
-                    <h4>Echoes of the Lost</h4>
-                    <p>A mind-bending puzzle adventure where every choice ripples through time. Solve intricate
-                        challenges across multiple dimensions.</p>
-                    <div class="project-tags">
-                        <span>Godot</span><span>GDScript</span><span>3D</span>
-                    </div>
-                </div>
+            <p style="text-align:center; margin-top:2rem; color:var(--text-secondary);">Masih banyak proyek kecil lain di <a href="https://github.com/Vixies-Team" target="_blank" style="color:var(--fox-orange);">GitHub kami</a>. Eksplorasi sendiri, ya!</p>
+        </div>
+    </div>
+
+    <footer class="footer" id="contact">
+        <div class="footer-grid">
+            <div class="footer-brand">
+                <h3>Vixies Group</h3>
+                <p>Dibuat dengan ☕ dan semangat kolaborasi. <br>Mari berkarya bersama!</p>
             </div>
-            <!-- Project 3 -->
-            <div class="project-card">
-                <div class="project-thumb">
-                    <span class="thumb-icon"><i class="fa-solid fa-ghost"></i></span>
-                </div>
-                <div class="project-info">
-                    <span class="genre">Horror Visual Novel</span>
-                    <h4>Midnight Whispers</h4>
-                    <p>A chilling visual novel with hand-drawn art and multiple endings. Uncover the secrets hidden in a
-                        haunted boarding school.</p>
-                    <div class="project-tags">
-                        <span>Ren'Py</span><span>Python</span><span>2D Art</span>
-                    </div>
-                </div>
-            </div>
-            <!-- Project 4 -->
-            <div class="project-card">
-                <div class="project-thumb">
-                    <span class="thumb-icon"><i class="fa-solid fa-rocket"></i></span>
-                </div>
-                <div class="project-info">
-                    <span class="genre">Sci-Fi Platformer</span>
-                    <h4>Neon Drift Protocol</h4>
-                    <p>A fast-paced cyberpunk platformer with slick movement mechanics and a synthwave soundtrack.
-                        Defy gravity in a neon-drenched world.</p>
-                    <div class="project-tags">
-                        <span>Unreal</span><span>Blueprints</span><span>3D</span>
-                    </div>
-                </div>
-            </div>
-            <!-- Project 5 -->
-            <div class="project-card">
-                <div class="project-thumb">
-                    <span class="thumb-icon"><i class="fa-solid fa-crown"></i></span>
-                </div>
-                <div class="project-info">
-                    <span class="genre">Strategy RPG</span>
-                    <h4>Kingdoms Fall</h4>
-                    <p>Lead your faction to glory in this turn-based strategy RPG. Forge alliances, command armies, and
-                        shape the fate of a continent.</p>
-                    <div class="project-tags">
-                        <span>Unity</span><span>C#</span><span>Isometric</span>
-                    </div>
-                </div>
-            </div>
-            <!-- Project 6 - Placeholder -->
-            <div class="project-card" style="opacity:0.7;">
-                <div class="project-thumb" style="background:linear-gradient(135deg,#0d1b2a 0%,#1a3a6b 50%,#e85d04 100%);">
-                    <span class="thumb-icon"><i class="fa-solid fa-sparkles"></i></span>
-                </div>
-                <div class="project-info">
-                    <span class="genre">Coming Soon</span>
-                    <h4>Untitled Project</h4>
-                    <p>Something new is brewing in the Vixies lab. Stay tuned for our next big adventure.</p>
-                    <div class="project-tags">
-                        <span>???</span><span>TBA</span>
-                    </div>
+            <div class="footer-social">
+                <div class="social-icons">
+                    <a href="https://instagram.com/vixies_team" target="_blank" title="Instagram"><i class="fa-brands fa-instagram"></i></a>
+                    <a href="https://github.com/Vixies-Team" target="_blank" title="GitHub"><i class="fa-brands fa-github"></i></a>
+                    <a href="https://x.com/Vixies_Group" target="_blank" title="Twitter/X"><i class="fa-brands fa-x-twitter"></i></a>
+                    <a href="https://www.youtube.com/@Vixies_Group" target="_blank" title="YouTube"><i class="fa-brands fa-youtube"></i></a>
                 </div>
             </div>
         </div>
-    </section>
-
-    <!-- ==================== FOOTER / CONTACT ==================== -->
-    <footer class="footer" id="contact">
-        <div class="footer-inner">
-            <div class="social-icons">
-                <!-- Instagram -->
-                <a href="https://instagram.com" target="_blank" rel="noopener noreferrer" title="Instagram" aria-label="Instagram">
-                    <i class="fa-brands fa-instagram"></i>
-                </a>
-                <!-- Twitter / X -->
-                <a href="https://twitter.com" target="_blank" rel="noopener noreferrer" title="Twitter / X" aria-label="Twitter">
-                    <i class="fa-brands fa-x-twitter"></i>
-                </a>
-                <!-- YouTube -->
-                <a href="https://youtube.com" target="_blank" rel="noopener noreferrer" title="YouTube" aria-label="YouTube">
-                    <i class="fa-brands fa-youtube"></i>
-                </a>
-            </div>
-            <p class="footer-text">
-                &copy; 2026 <strong>Vixies Group</strong>. All rights reserved. — Built with passion &amp; coffee.
-            </p>
+        <div class="footer-bottom">
+            &copy; 2026 Vixies Group. Some rights reserved.
         </div>
     </footer>
 
-    <!-- ==================== SCRIPTS ==================== -->
     <script>
-        // ── DOM Elements ──────────────────────────
         const html = document.documentElement;
         const themeToggle = document.getElementById('themeToggle');
         const navbar = document.getElementById('navbar');
         const mobileMenuBtn = document.getElementById('mobileMenuBtn');
         const navLinks = document.getElementById('navLinks');
 
-        // ── Theme Toggle ──────────────────────────
         const savedTheme = localStorage.getItem('vixies-theme') || 'dark';
         html.setAttribute('data-theme', savedTheme);
-
         themeToggle.addEventListener('click', () => {
-            const current = html.getAttribute('data-theme');
-            const next = current === 'dark' ? 'light' : 'dark';
+            const next = html.getAttribute('data-theme') === 'dark' ? 'light' : 'dark';
             html.setAttribute('data-theme', next);
             localStorage.setItem('vixies-theme', next);
         });
 
-        // ── Navbar scroll shadow ──────────────────
-        window.addEventListener('scroll', () => {
-            if (window.scrollY > 40) {
-                navbar.classList.add('scrolled');
-            } else {
-                navbar.classList.remove('scrolled');
-            }
-        });
+        window.addEventListener('scroll', () => navbar.classList.toggle('scrolled', window.scrollY > 40));
+        mobileMenuBtn.addEventListener('click', () => navLinks.classList.toggle('open'));
+        function closeMenu() { navLinks.classList.remove('open'); }
+        document.addEventListener('click', (e) => { if (!navbar.contains(e.target)) navLinks.classList.remove('open'); });
 
-        // ── Mobile menu ───────────────────────────
-        mobileMenuBtn.addEventListener('click', () => {
-            navLinks.classList.toggle('open');
-        });
-
-        function closeMenu() {
-            navLinks.classList.remove('open');
-        }
-
-        // Close menu when clicking outside
-        document.addEventListener('click', (e) => {
-            if (!navbar.contains(e.target) && navLinks.classList.contains('open')) {
-                navLinks.classList.remove('open');
-            }
-        });
-
-        // ── Smooth reveal animation on scroll ─────
-        const observerOptions = {
-            threshold: 0.12,
-            rootMargin: '0px 0px -40px 0px',
-        };
-
+        // reveal animations
         const observer = new IntersectionObserver((entries) => {
-            entries.forEach(entry => {
-                if (entry.isIntersecting) {
-                    entry.target.style.opacity = '1';
-                    entry.target.style.transform = 'translateY(0)';
-                }
-            });
-        }, observerOptions);
-
-        // Observe team cards
-        document.querySelectorAll('.team-card').forEach((card, i) => {
-            card.style.opacity = '0';
-            card.style.transform = 'translateY(30px)';
-            card.style.transition = `all 0.5s cubic-bezier(0.25, 0.8, 0.25, 1.2) ${i * 0.06}s`;
-            observer.observe(card);
+            entries.forEach(entry => { if (entry.isIntersecting) { entry.target.style.opacity = '1'; entry.target.style.transform = 'translateY(0)'; } });
+        }, { threshold: 0.12 });
+        document.querySelectorAll('.team-card, .project-card, .field-card').forEach((el, i) => {
+            el.style.opacity = '0'; el.style.transform = 'translateY(30px)';
+            el.style.transition = `all 0.5s ${i * 0.06}s`; observer.observe(el);
         });
-
-        // Observe project cards
-        document.querySelectorAll('.project-card').forEach((card, i) => {
-            card.style.opacity = '0';
-            card.style.transform = 'translateY(30px)';
-            card.style.transition = `all 0.5s cubic-bezier(0.25, 0.8, 0.25, 1.2) ${i * 0.07}s`;
-            observer.observe(card);
-        });
-
-        // Observe about section
-        const aboutVisual = document.querySelector('.about-visual');
-        const aboutText = document.querySelector('.about-text');
-        if (aboutVisual) {
-            aboutVisual.style.opacity = '0';
-            aboutVisual.style.transform = 'translateX(-30px)';
-            aboutVisual.style.transition = 'all 0.7s cubic-bezier(0.25, 0.8, 0.25, 1.2)';
-            observer.observe(aboutVisual);
-        }
-        if (aboutText) {
-            aboutText.style.opacity = '0';
-            aboutText.style.transform = 'translateX(30px)';
-            aboutText.style.transition = 'all 0.7s cubic-bezier(0.25, 0.8, 0.25, 1.2) 0.1s';
-            observer.observe(aboutText);
-        }
-
-        // ── Console greeting ──────────────────────
-        console.log('%c🦊 Vixies Group %cPortfolio Ready',
-            'font-size:1.4rem;font-weight:bold;color:#f4791f;',
-            'font-size:1rem;color:#b0bdd0;');
-        console.log('%c✨ Thanks for checking out our website!',
-            'color:#e8ecf2;font-style:italic;');
     </script>
 </body>
 </html>
