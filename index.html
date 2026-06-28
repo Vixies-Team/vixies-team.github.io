@@ -6,22 +6,21 @@
 
     <link rel="icon" type="image/x-icon" href="favicon.ico">
 
-    <!-- Open Graph / Rich Preview -->
-    <meta property="og:title" content="Homepage | Vixies Team">
+    <meta property="og:title" content="Vixies Team — Building Creations, Learning Together">
     <meta property="og:description" content="Building creations, learning together. A passionate collective of programmers, artists, and storytellers from Indonesia.">
     <meta property="og:type" content="website">
     <meta property="og:url" content="https://vixies.my.id">
+    <meta property="og:image" content="https://vixies-team.github.io/assets/logo.png">
     <meta property="og:image:width" content="1200">
     <meta property="og:image:height" content="630">
     <meta property="og:site_name" content="Vixies Team">
 
-    <!-- Twitter Card (opsional) -->
     <meta name="twitter:card" content="summary_large_image">
-    <meta name="twitter:title" content="Vixies Team — Creative & Tech Collective">
+    <meta name="twitter:title" content="Vixies Team — Building Creations, Learning Together">
     <meta name="twitter:description" content="Building creations, learning together. A passionate collective of programmers, artists, and storytellers from Indonesia.">
-    <meta name="twitter:image" content="https://vixies.my.id/images/og-image.jpg">
+    <meta name="twitter:image" content="https://vixies-team.github.io/assets/logo.png">
 
-    <title>Vixies Team</title>
+    <title>Vixies Team — Building Creations, Learning Together</title>
 
     <!-- Font Awesome 6 -->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
@@ -352,7 +351,34 @@
             font-family: 'Space Grotesk', 'Inter', sans-serif; font-size: 1.15rem; font-weight: 700;
             color: var(--text-primary); margin-bottom: 0.3rem; letter-spacing: -0.2px; transition: color 0.25s ease;
         }
-        .team-card .role { font-size: 0.85rem; color: var(--fox-orange); font-weight: 500; }
+        .team-card .role { font-size: 0.85rem; color: var(--fox-orange); font-weight: 500; margin-bottom: 0.8rem; }
+
+        /* ===== TOMBOL GITHUB DI KARTU TIM ===== */
+        .team-github-link {
+            display: inline-flex;
+            align-items: center;
+            gap: 6px;
+            margin-top: 8px;
+            padding: 6px 16px;
+            border-radius: 50px;
+            font-size: 0.82rem;
+            font-weight: 600;
+            color: var(--fox-orange);
+            background: transparent;
+            border: 1.5px solid var(--fox-orange);
+            text-decoration: none;
+            transition: all 0.25s ease;
+        }
+        .team-github-link i {
+            font-size: 0.9rem;
+        }
+        .team-github-link:hover {
+            background: var(--fox-orange);
+            color: #fff;
+            border-color: var(--fox-orange);
+            transform: translateY(-2px);
+            box-shadow: 0 6px 18px var(--fox-orange-glow);
+        }
 
         .projects-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(320px, 1fr)); gap: 1.8rem; }
         .project-card {
@@ -623,14 +649,54 @@
         <h2 class="section-title">The People Behind the Magic</h2>
         <p class="section-desc">Each member brings a unique talent to the table — from code to canvas, from narrative to design.</p>
         <div class="team-grid">
-            <div class="team-card"><div class="team-avatar avatar-image"><img src="https://avatars.githubusercontent.com/u/109958650?v=4" loading="lazy"></div><h4>Kevin Adhaikal</h4><p class="role">Programmer</p></div>
-            <div class="team-card"><div class="team-avatar avatar-image"><img src="https://avatars.githubusercontent.com/u/210631916?v=4" loading="lazy"></div><h4>Fahri Santoso</h4><p class="role">Storywriter & Game Designer</p></div>
-            <div class="team-card"><div class="team-avatar avatar-image"><img src="https://avatars.githubusercontent.com/u/245013243?v=4" loading="lazy"></div><h4>Erlambang</h4><p class="role">Project Manager</p></div>
-            <div class="team-card"><div class="team-avatar avatar-image"><img src="https://avatars.githubusercontent.com/u/218979810?v=4" loading="lazy"></div><h4>Fauzan Faturrahman</h4><p class="role">Programmer, 2D Pixel Artist & Game Designer</p></div>
-            <div class="team-card"><div class="team-avatar">N</div><h4>Nizar</h4><p class="role">Storywriter & Game Design</p></div>
-            <div class="team-card"><div class="team-avatar avatar-image"><img src="https://avatars.githubusercontent.com/u/181866406?v=4" loading="lazy"></div><h4>Rizki Rasdiwiyanto</h4><p class="role">2D Artist</p></div>
-            <div class="team-card"><div class="team-avatar">S</div><h4>Suryo</h4><p class="role">Storywriter</p></div>
-            <div class="team-card"><div class="team-avatar">E</div><h4>Ezar</h4><p class="role">Editor & Artist</p></div>
+            <div class="team-card">
+                <div class="team-avatar avatar-image"><img src="https://avatars.githubusercontent.com/u/109958650?v=4" loading="lazy" alt="Kevin Adhaikal"></div>
+                <h4>Kevin Adhaikal</h4>
+                <p class="role">Programmer</p>
+                <a href="https://github.com/kevinadhaikal" target="_blank" rel="noopener" class="team-github-link"><i class="fa-brands fa-github"></i> GitHub</a>
+            </div>
+            <div class="team-card">
+                <div class="team-avatar avatar-image"><img src="https://avatars.githubusercontent.com/u/210631916?v=4" loading="lazy" alt="Fahri Santoso"></div>
+                <h4>Fahri Santoso</h4>
+                <p class="role">Storywriter & Game Designer</p>
+                <a href="https://github.com/Fahri-S" target="_blank" rel="noopener" class="team-github-link"><i class="fa-brands fa-github"></i> GitHub</a>
+            </div>
+            <div class="team-card">
+                <div class="team-avatar avatar-image"><img src="https://avatars.githubusercontent.com/u/245013243?v=4" loading="lazy" alt="Erlambang"></div>
+                <h4>Erlambang</h4>
+                <p class="role">Project Manager</p>
+                <a href="https://github.com/ERL-20" target="_blank" rel="noopener" class="team-github-link"><i class="fa-brands fa-github"></i> GitHub</a>
+            </div>
+            <div class="team-card">
+                <div class="team-avatar avatar-image"><img src="https://avatars.githubusercontent.com/u/218979810?v=4" loading="lazy" alt="Fauzan Faturrahman"></div>
+                <h4>Fauzan Faturrahman</h4>
+                <p class="role">Programmer, 2D Pixel Artist & Game Designer</p>
+                <a href="https://github.com/elwanenonly" target="_blank" rel="noopener" class="team-github-link"><i class="fa-brands fa-github"></i> GitHub</a>
+            </div>
+            <div class="team-card">
+                <div class="team-avatar avatar-image"><img src="https://avatars.githubusercontent.com/u/181866406?v=4" loading="lazy" alt="Rizki Rasdiwiyanto"></div>
+                <h4>Rizki Rasdiwiyanto</h4>
+                <p class="role">2D Artist</p>
+                <a href="https://github.com/enkinq" target="_blank" rel="noopener" class="team-github-link"><i class="fa-brands fa-github"></i> GitHub</a>
+            </div>
+            <div class="team-card">
+                <div class="team-avatar avatar-image"><img src="https://avatars.githubusercontent.com/u/187234443?v=4" loading="lazy" alt="Joy"></div>
+                <h4>Joy</h4>
+                <p class="role">Storywriter</p>
+                <a href="https://github.com/thirdteen-13" target="_blank" rel="noopener" class="team-github-link"><i class="fa-brands fa-github"></i> GitHub</a>
+            </div>
+            <div class="team-card">
+                <div class="team-avatar avatar-image"><img src="https://avatars.githubusercontent.com/u/297574493?v=4" loading="lazy" alt="Ezar"></div>
+                <h4>Ezar</h4>
+                <p class="role">Editor & Artist</p>
+                <a href="https://github.com/ezar-desu" target="_blank" rel="noopener" class="team-github-link"><i class="fa-brands fa-github"></i> GitHub</a>
+            </div>
+            <div class="team-card">
+                <div class="team-avatar">N</div>
+                <h4>Nizar</h4>
+                <p class="role">Storywriter & Game Design</p>
+                <a href="https://github.com/nqashid" target="_blank" rel="noopener" class="team-github-link"><i class="fa-brands fa-github"></i> GitHub</a>
+            </div>
         </div>
     </section>
 
