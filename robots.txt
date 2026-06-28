@@ -1,0 +1,56 @@
+# ---------- ALLOW SEMUA CRAWLER UTAMA ----------
+User-agent: *
+Allow: /
+Disallow: /admin/
+Disallow: /wp-admin/
+Disallow: /wp-includes/
+Disallow: /assets/js/
+Disallow: /assets/css/
+Disallow: /tmp/
+Disallow: /logs/
+Disallow: /*.pdf$
+Disallow: /*.zip$
+Disallow: /*.rar$
+Disallow: /*.txt$
+Crawl-delay: 1
+
+# GPTBot - OpenAI model training
+User-agent: GPTBot
+Allow: /
+Disallow: /admin/
+Disallow: /wp-admin/
+
+# OAI-SearchBot - ChatGPT real-time search
+User-agent: OAI-SearchBot
+Allow: /
+Disallow: /admin/
+Disallow: /wp-admin/
+
+# PerplexityBot - Perplexity AI search
+User-agent: PerplexityBot
+Allow: /
+Disallow: /admin/
+Disallow: /wp-admin/
+
+# ClaudeBot - Anthropic/Claude
+User-agent: ClaudeBot
+Allow: /
+Disallow: /admin/
+Disallow: /wp-admin/
+
+# Claude-SearchBot - Claude search
+User-agent: Claude-SearchBot
+Allow: /
+Disallow: /admin/
+Disallow: /wp-admin/
+
+# Google-Extended - Google AI training opt-out
+User-agent: Google-Extended
+Allow: /
+
+# CCBot - Common Crawl (digunakan oleh banyak AI)
+User-agent: CCBot
+Allow: /
+
+# ---------- SITEMAP ----------
+Sitemap: https://vixies-team.com/sitemap.xml
