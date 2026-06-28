@@ -4,6 +4,8 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
+    <link rel="icon" type="image/x-icon" href="favicon.ico">
+
     <!-- Open Graph / Rich Preview -->
     <meta property="og:title" content="Homepage | Vixies Team">
     <meta property="og:description" content="Building creations, learning together. A passionate collective of programmers, artists, and storytellers from Indonesia.">
@@ -117,13 +119,51 @@
             transition: opacity 0.25s; justify-self: start;
         }
         .nav-logo:hover { opacity: 0.82; }
+
+        /* === KOTAK LOGO NAVBAR - SHADOW KUAT === */
         .nav-logo .logo-icon {
-            width: 38px; height: 38px; border-radius: 10px;
-            background: linear-gradient(135deg, #e85d04 0%, #f4791f 60%, #ff9a4d 100%);
-            display: flex; align-items: center; justify-content: center;
-            font-size: 1.25rem; color: #fff; font-weight: 900;
-            box-shadow: 0 4px 16px var(--fox-orange-glow); flex-shrink: 0;
+            width: 38px;
+            height: 38px;
+            border-radius: 10px;
+            background: rgba(10, 15, 26, 0.8);
+            box-shadow: 
+                0 0 0 2px rgba(232, 93, 4, 0.3),  /* outer ring */
+                0 4px 20px rgba(232, 93, 4, 0.4), /* glow */
+                0 8px 30px rgba(0, 0, 0, 0.6);   /* depth */
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            overflow: hidden;
+            flex-shrink: 0;
+            transition: all 0.3s ease;
         }
+        .nav-logo .logo-icon:hover {
+            box-shadow: 
+                0 0 0 3px rgba(232, 93, 4, 0.5),
+                0 6px 28px rgba(232, 93, 4, 0.6),
+                0 10px 36px rgba(0, 0, 0, 0.7);
+            transform: scale(1.05);
+        }
+        .nav-logo .logo-icon img {
+            width: 100%;
+            height: 100%;
+            object-fit: contain;
+            border-radius: inherit;
+        }
+        [data-theme="light"] .nav-logo .logo-icon {
+            background: rgba(255, 255, 255, 0.9);
+            box-shadow: 
+                0 0 0 2px rgba(232, 93, 4, 0.2),
+                0 4px 15px rgba(0, 0, 0, 0.1),
+                0 2px 8px rgba(0, 0, 0, 0.05);
+        }
+        [data-theme="light"] .nav-logo .logo-icon:hover {
+            box-shadow: 
+                0 0 0 3px rgba(232, 93, 4, 0.4),
+                0 6px 22px rgba(232, 93, 4, 0.2),
+                0 4px 12px rgba(0, 0, 0, 0.1);
+        }
+
         .nav-links {
             display: flex; align-items: center; gap: 2.2rem; list-style: none;
             justify-self: center; margin: 0; padding: 0;
@@ -319,7 +359,7 @@
             background: var(--bg-card); border-radius: 18px; overflow: hidden;
             border: 1px solid var(--border-subtle); box-shadow: var(--shadow-card);
             transition: all 0.25s ease, background 0.25s ease, border-color 0.25s ease, box-shadow 0.25s ease;
-            cursor: default; /* ← Normal cursor */
+            cursor: default;
             display: flex; flex-direction: column;
         }
         .project-card:hover {
@@ -349,7 +389,7 @@
         }
         .project-links a {
             display: flex; align-items: center; justify-content: center;
-            width: 40px; height: 40px; border-radius: 12px; /* rounded square */
+            width: 40px; height: 40px; border-radius: 12px;
             background: rgba(10, 15, 26, 0.55);
             backdrop-filter: blur(12px);
             -webkit-backdrop-filter: blur(12px);
@@ -408,12 +448,50 @@
         }
         .footer-inner { max-width: 900px; margin: 0 auto; display: flex; flex-direction: column; align-items: center; gap: 2rem; position: relative; z-index: 1; }
         .footer-brand { display: flex; flex-direction: column; align-items: center; gap: 0.6rem; }
+
+        /* === KOTAK LOGO FOOTER - SHADOW KUAT === */
         .footer-logo-icon {
-            width: 44px; height: 44px; border-radius: 12px;
-            background: linear-gradient(135deg, #e85d04 0%, #f4791f 60%, #ff9a4d 100%);
-            display: flex; align-items: center; justify-content: center;
-            font-size: 1.4rem; font-weight: 900; color: #fff; box-shadow: 0 4px 18px var(--fox-orange-glow);
+            width: 44px;
+            height: 44px;
+            border-radius: 12px;
+            background: rgba(10, 15, 26, 0.8);
+            box-shadow: 
+                0 0 0 2px rgba(232, 93, 4, 0.35),
+                0 6px 24px rgba(232, 93, 4, 0.45),
+                0 10px 36px rgba(0, 0, 0, 0.6);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            overflow: hidden;
+            transition: all 0.3s ease;
         }
+        .footer-logo-icon:hover {
+            box-shadow: 
+                0 0 0 3px rgba(232, 93, 4, 0.6),
+                0 8px 30px rgba(232, 93, 4, 0.65),
+                0 12px 40px rgba(0, 0, 0, 0.7);
+            transform: scale(1.08);
+        }
+        .footer-logo-icon img {
+            width: 100%;
+            height: 100%;
+            object-fit: contain;
+            border-radius: inherit;
+        }
+        [data-theme="light"] .footer-logo-icon {
+            background: rgba(255, 255, 255, 0.9);
+            box-shadow: 
+                0 0 0 2px rgba(232, 93, 4, 0.25),
+                0 6px 20px rgba(0, 0, 0, 0.12),
+                0 4px 12px rgba(0, 0, 0, 0.06);
+        }
+        [data-theme="light"] .footer-logo-icon:hover {
+            box-shadow: 
+                0 0 0 3px rgba(232, 93, 4, 0.45),
+                0 8px 26px rgba(232, 93, 4, 0.25),
+                0 6px 16px rgba(0, 0, 0, 0.12);
+        }
+
         .footer-tagline { color: var(--text-secondary); font-size: 0.95rem; text-align: center; max-width: 400px; line-height: 1.7; transition: color 0.25s ease; }
         .social-icons { display: flex; gap: 1rem; flex-wrap: wrap; justify-content: center; }
         .social-icons a {
@@ -468,7 +546,12 @@
 </head>
 <body>
     <nav class="navbar" id="navbar">
-        <a href="#" class="nav-logo"><span class="logo-icon">V</span>Vixies Team</a>
+        <a href="#" class="nav-logo">
+            <span class="logo-icon">
+                <img src="assets/logo.png" alt="Vixies Team" />
+            </span>
+            Vixies Team
+        </a>
         <ul class="nav-links" id="navLinks">
             <li><a href="#about" onclick="closeMenu()">About</a></li>
             <li><a href="#philosophy" onclick="closeMenu()">Philosophy</a></li>
@@ -546,8 +629,8 @@
             <div class="team-card"><div class="team-avatar avatar-image"><img src="https://avatars.githubusercontent.com/u/218979810?v=4" loading="lazy"></div><h4>Fauzan Faturrahman</h4><p class="role">Programmer, 2D Pixel Artist & Game Designer</p></div>
             <div class="team-card"><div class="team-avatar">N</div><h4>Nizar</h4><p class="role">Storywriter & Game Design</p></div>
             <div class="team-card"><div class="team-avatar avatar-image"><img src="https://avatars.githubusercontent.com/u/181866406?v=4" loading="lazy"></div><h4>Rizki Rasdiwiyanto</h4><p class="role">2D Artist</p></div>
-            <div class="team-card"><div class="team-avatar avatar-image"><img src="https://avatars.githubusercontent.com/u/187234443?v=4" loading="lazy"></div><h4>Suryo</h4><p class="role">Storywriter</p></div>
-            <div class="team-card"><div class="team-avatar avatar-image"><img src="https://avatars.githubusercontent.com/u/297574493?v=4" loading="lazy"></div><h4>Ezar</h4><p class="role">Editor & Artist</p></div>
+            <div class="team-card"><div class="team-avatar">S</div><h4>Suryo</h4><p class="role">Storywriter</p></div>
+            <div class="team-card"><div class="team-avatar">E</div><h4>Ezar</h4><p class="role">Editor & Artist</p></div>
         </div>
     </section>
 
@@ -604,7 +687,10 @@
     <footer class="footer" id="contact">
         <div class="footer-inner">
             <div class="footer-brand">
-                <div class="footer-logo-icon">V</div>
+                <!-- Logo footer disamakan dengan navbar -->
+                <span class="footer-logo-icon">
+                    <img src="assets/logo.png" alt="Vixies Team" />
+                </span>
                 <p class="footer-tagline">Building creations, learning together — where stories come to play. <strong>Vixies Team</strong> is open for collaboration.</p>
             </div>
             <div class="social-icons">
